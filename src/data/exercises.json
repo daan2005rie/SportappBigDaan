@@ -1,0 +1,3214 @@
+[
+  {
+    "id": 1,
+    "name": "Ab Wheel",
+    "primaryMuscle": "Core",
+    "equipment": "Ab wheel",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Rectus abdominis",
+      "Transversus abdominis",
+      "Obliques",
+      "Latissimus dorsi",
+      "Schouders"
+    ],
+    "description": "Rol gecontroleerd naar voren en trek vanuit je buikspieren terug. Een zware anti-extensieoefening voor corekracht en rompstabiliteit."
+  },
+  {
+    "id": 2,
+    "name": "Air Squat",
+    "primaryMuscle": "Benen",
+    "equipment": "Lichaamsgewicht",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Gluteus maximus",
+      "Adductoren",
+      "Kuiten",
+      "Core"
+    ],
+    "description": "Train vooral benen door gecontroleerd te buigen en krachtig te strekken. Houd je romp stabiel en laat knieën in lijn met de voeten bewegen."
+  },
+  {
+    "id": 3,
+    "name": "Arnold Press",
+    "primaryMuscle": "Schouders",
+    "equipment": "Dumbbells",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Middelste schouderkop",
+      "Trapezius",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Duw de weerstand boven het hoofd terwijl je romp stabiel blijft. Train vooral de schouders en triceps, met ondersteuning van trapezius en core."
+  },
+  {
+    "id": 4,
+    "name": "Back Extension",
+    "primaryMuscle": "Onderrug",
+    "equipment": "Lichaamsgewicht",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Gluteus maximus",
+      "Hamstrings",
+      "Erector spinae",
+      "Core"
+    ],
+    "description": "Strek de heupen en romp gecontroleerd tot een neutrale positie. Train onderrug, bilspieren en hamstrings zonder de onderrug overdreven te overstrekken."
+  },
+  {
+    "id": 5,
+    "name": "Back Extension (Machine)",
+    "primaryMuscle": "Onderrug",
+    "equipment": "Machine",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Gluteus maximus",
+      "Hamstrings",
+      "Erector spinae",
+      "Core"
+    ],
+    "description": "Strek de heupen en romp gecontroleerd tot een neutrale positie. Train onderrug, bilspieren en hamstrings zonder de onderrug overdreven te overstrekken."
+  },
+  {
+    "id": 6,
+    "name": "Barbell Curl",
+    "primaryMuscle": "Biceps",
+    "equipment": "Barbell",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Brachialis",
+      "Brachioradialis",
+      "Onderarmen"
+    ],
+    "description": "Buig de ellebogen tegen weerstand en houd de bovenarmen zo stil mogelijk. Laat het gewicht gecontroleerd zakken voor constante spanning op arm en onderarm."
+  },
+  {
+    "id": 7,
+    "name": "Barbell Row",
+    "primaryMuscle": "Rug",
+    "equipment": "Barbell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Biceps",
+      "Rhomboids",
+      "Trapezius",
+      "Achterste schouderkop",
+      "Onderarmen/Grip",
+      "Core"
+    ],
+    "description": "Trek de weerstand richting je romp en beweeg de schouderbladen naar achteren. Houd de borst stabiel en voorkom dat momentum het werk overneemt."
+  },
+  {
+    "id": 8,
+    "name": "Bench Dip",
+    "primaryMuscle": "Triceps",
+    "equipment": "Lichaamsgewicht",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Voorste schouderkop",
+      "Borst",
+      "Anconeus",
+      "Core"
+    ],
+    "description": "Strek de ellebogen tegen weerstand en houd de bovenarmen gecontroleerd. Richt zich op de triceps, met extra stabilisatie vanuit schouders en romp."
+  },
+  {
+    "id": 9,
+    "name": "Bench Press",
+    "primaryMuscle": "Borst",
+    "equipment": "Barbell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Duw het gewicht gecontroleerd van je af en houd schouderbladen stabiel. Train vooral borst en triceps, met ondersteuning van de voorste schouders."
+  },
+  {
+    "id": 10,
+    "name": "Bench Press (Dumbbell)",
+    "primaryMuscle": "Borst",
+    "equipment": "Dumbbells",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Duw het gewicht gecontroleerd van je af en houd schouderbladen stabiel. Train vooral borst en triceps, met ondersteuning van de voorste schouders."
+  },
+  {
+    "id": 11,
+    "name": "Bulgarian Split Squat",
+    "primaryMuscle": "Benen/Glutes",
+    "equipment": "Dumbbells",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Gluteus maximus",
+      "Adductoren",
+      "Kuiten",
+      "Core"
+    ],
+    "description": "Train vooral benen/glutes door gecontroleerd te buigen en krachtig te strekken. Houd je romp stabiel en laat knieën in lijn met de voeten bewegen."
+  },
+  {
+    "id": 12,
+    "name": "Cable Crossover",
+    "primaryMuscle": "Borst",
+    "equipment": "Kabel",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Voorste schouderkop",
+      "Serratus anterior",
+      "Biceps (stabilisatie)"
+    ],
+    "description": "Breng de armen in een brede boog naar elkaar toe en houd de ellebogen licht gebogen. Focus op een gecontroleerde rek en contractie van de borst."
+  },
+  {
+    "id": 13,
+    "name": "Cable Crunch",
+    "primaryMuscle": "Core",
+    "equipment": "Kabel",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Transversus abdominis",
+      "Obliques",
+      "Heupflexoren"
+    ],
+    "description": "Buig de romp gecontroleerd en span de buikspieren aan zonder aan nek of hoofd te trekken. Houd de terugweg rustig voor constante spanning op de core."
+  },
+  {
+    "id": 14,
+    "name": "Cable Curl",
+    "primaryMuscle": "Biceps",
+    "equipment": "Kabel",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Brachialis",
+      "Brachioradialis",
+      "Onderarmen"
+    ],
+    "description": "Buig de ellebogen tegen weerstand en houd de bovenarmen zo stil mogelijk. Laat het gewicht gecontroleerd zakken voor constante spanning op arm en onderarm."
+  },
+  {
+    "id": 15,
+    "name": "Cable Kickback",
+    "primaryMuscle": "Glutes",
+    "equipment": "Kabel",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Gluteus medius",
+      "Gluteus minimus",
+      "Hamstrings",
+      "Core"
+    ],
+    "description": "Voer Cable Kickback gecontroleerd uit met focus op glutes. Gebruik een stabiele houding, volledige bewegingsuitslag en vermijd onnodig momentum."
+  },
+  {
+    "id": 16,
+    "name": "Cable Lateral Raise",
+    "primaryMuscle": "Schouders",
+    "equipment": "Kabel",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Supraspinatus",
+      "Voorste schouderkop",
+      "Trapezius",
+      "Serratus anterior"
+    ],
+    "description": "Hef de armen zijwaarts tot ongeveer schouderhoogte met licht gebogen ellebogen. Gebruik weinig momentum en houd spanning op de middelste schouderkop."
+  },
+  {
+    "id": 17,
+    "name": "Cable Row",
+    "primaryMuscle": "Rug",
+    "equipment": "Kabel",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Biceps",
+      "Rhomboids",
+      "Trapezius",
+      "Achterste schouderkop",
+      "Onderarmen/Grip",
+      "Core"
+    ],
+    "description": "Trek de weerstand richting je romp en beweeg de schouderbladen naar achteren. Houd de borst stabiel en voorkom dat momentum het werk overneemt."
+  },
+  {
+    "id": 18,
+    "name": "Cable Triceps Extension",
+    "primaryMuscle": "Triceps",
+    "equipment": "Kabel",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Voorste schouderkop",
+      "Borst",
+      "Anconeus",
+      "Core"
+    ],
+    "description": "Strek de ellebogen tegen weerstand en houd de bovenarmen gecontroleerd. Richt zich op de triceps, met extra stabilisatie vanuit schouders en romp."
+  },
+  {
+    "id": 19,
+    "name": "Calf Press",
+    "primaryMuscle": "Kuiten",
+    "equipment": "Machine",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Soleus",
+      "Gastrocnemius",
+      "Tibialis posterior",
+      "Voet- en enkelstabilisatoren"
+    ],
+    "description": "Strek de enkels volledig en kom hoog op de voorvoet. Laat de hielen gecontroleerd zakken voor een grote bewegingsuitslag en sterke kuitcontractie."
+  },
+  {
+    "id": 20,
+    "name": "Chest Fly",
+    "primaryMuscle": "Borst",
+    "equipment": "Dumbbells",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Voorste schouderkop",
+      "Serratus anterior",
+      "Biceps (stabilisatie)"
+    ],
+    "description": "Breng de armen in een brede boog naar elkaar toe en houd de ellebogen licht gebogen. Focus op een gecontroleerde rek en contractie van de borst."
+  },
+  {
+    "id": 21,
+    "name": "Chest Fly (Machine)",
+    "primaryMuscle": "Borst",
+    "equipment": "Machine",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Voorste schouderkop",
+      "Serratus anterior",
+      "Biceps (stabilisatie)"
+    ],
+    "description": "Breng de armen in een brede boog naar elkaar toe en houd de ellebogen licht gebogen. Focus op een gecontroleerde rek en contractie van de borst."
+  },
+  {
+    "id": 22,
+    "name": "Chest Press",
+    "primaryMuscle": "Borst",
+    "equipment": "Machine",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Duw het gewicht gecontroleerd van je af en houd schouderbladen stabiel. Train vooral borst en triceps, met ondersteuning van de voorste schouders."
+  },
+  {
+    "id": 23,
+    "name": "Chin Up",
+    "primaryMuscle": "Rug/Biceps",
+    "equipment": "Lichaamsgewicht",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Biceps",
+      "Brachialis",
+      "Rhomboids",
+      "Trapezius",
+      "Achterste schouderkop",
+      "Onderarmen/Grip",
+      "Core"
+    ],
+    "description": "Trek vanuit de rug en breng de ellebogen richting je zij. Houd de borst trots en controleer de terugweg voor spanning op lats, biceps en bovenrug."
+  },
+  {
+    "id": 24,
+    "name": "Close Grip Bench Press",
+    "primaryMuscle": "Triceps/Borst",
+    "equipment": "Barbell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Duw het gewicht gecontroleerd van je af en houd schouderbladen stabiel. Train vooral borst en triceps, met ondersteuning van de voorste schouders."
+  },
+  {
+    "id": 25,
+    "name": "Concentration Curl",
+    "primaryMuscle": "Biceps",
+    "equipment": "Dumbbell",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Brachialis",
+      "Brachioradialis",
+      "Onderarmen"
+    ],
+    "description": "Buig de ellebogen tegen weerstand en houd de bovenarmen zo stil mogelijk. Laat het gewicht gecontroleerd zakken voor constante spanning op arm en onderarm."
+  },
+  {
+    "id": 26,
+    "name": "Crunch",
+    "primaryMuscle": "Core",
+    "equipment": "Lichaamsgewicht",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Transversus abdominis",
+      "Obliques",
+      "Heupflexoren"
+    ],
+    "description": "Buig de romp gecontroleerd en span de buikspieren aan zonder aan nek of hoofd te trekken. Houd de terugweg rustig voor constante spanning op de core."
+  },
+  {
+    "id": 27,
+    "name": "Deadlift",
+    "primaryMuscle": "Rug/Benen",
+    "equipment": "Barbell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Erector spinae",
+      "Gluteus maximus",
+      "Hamstrings",
+      "Adductoren",
+      "Core",
+      "Onderarmen/Grip",
+      "Latissimus dorsi"
+    ],
+    "description": "Een heupdominante beweging voor de achterste keten. Beweeg vanuit de heupen, houd de rug neutraal en strek krachtig door met billen en hamstrings."
+  },
+  {
+    "id": 28,
+    "name": "Decline Bench Press",
+    "primaryMuscle": "Borst",
+    "equipment": "Barbell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Duw het gewicht gecontroleerd van je af en houd schouderbladen stabiel. Train vooral borst en triceps, met ondersteuning van de voorste schouders."
+  },
+  {
+    "id": 29,
+    "name": "Decline Bench Press (Dumbbell)",
+    "primaryMuscle": "Borst",
+    "equipment": "Dumbbells",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Duw het gewicht gecontroleerd van je af en houd schouderbladen stabiel. Train vooral borst en triceps, met ondersteuning van de voorste schouders."
+  },
+  {
+    "id": 30,
+    "name": "Dumbbell Bench Press",
+    "primaryMuscle": "Borst",
+    "equipment": "Dumbbells",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Duw het gewicht gecontroleerd van je af en houd schouderbladen stabiel. Train vooral borst en triceps, met ondersteuning van de voorste schouders."
+  },
+  {
+    "id": 31,
+    "name": "Dumbbell Fly",
+    "primaryMuscle": "Borst",
+    "equipment": "Dumbbells",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Voorste schouderkop",
+      "Serratus anterior",
+      "Biceps (stabilisatie)"
+    ],
+    "description": "Breng de armen in een brede boog naar elkaar toe en houd de ellebogen licht gebogen. Focus op een gecontroleerde rek en contractie van de borst."
+  },
+  {
+    "id": 32,
+    "name": "Dumbbell Front Raise",
+    "primaryMuscle": "Schouders",
+    "equipment": "Dumbbells",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Pectoralis major (bovenkant)",
+      "Middelste schouderkop",
+      "Trapezius",
+      "Serratus anterior"
+    ],
+    "description": "Hef de weerstand voor het lichaam tot ongeveer schouderhoogte. Houd de romp stil en laat de voorste schouderkop gecontroleerd het werk doen."
+  },
+  {
+    "id": 33,
+    "name": "Dumbbell Lateral Raise",
+    "primaryMuscle": "Schouders",
+    "equipment": "Dumbbells",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Supraspinatus",
+      "Voorste schouderkop",
+      "Trapezius",
+      "Serratus anterior"
+    ],
+    "description": "Hef de armen zijwaarts tot ongeveer schouderhoogte met licht gebogen ellebogen. Gebruik weinig momentum en houd spanning op de middelste schouderkop."
+  },
+  {
+    "id": 34,
+    "name": "Dumbbell Row",
+    "primaryMuscle": "Rug",
+    "equipment": "Dumbbell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Biceps",
+      "Rhomboids",
+      "Trapezius",
+      "Achterste schouderkop",
+      "Onderarmen/Grip",
+      "Core"
+    ],
+    "description": "Trek de weerstand richting je romp en beweeg de schouderbladen naar achteren. Houd de borst stabiel en voorkom dat momentum het werk overneemt."
+  },
+  {
+    "id": 35,
+    "name": "Dumbbell Shoulder Press",
+    "primaryMuscle": "Schouders",
+    "equipment": "Dumbbells",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Middelste schouderkop",
+      "Trapezius",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Duw de weerstand boven het hoofd terwijl je romp stabiel blijft. Train vooral de schouders en triceps, met ondersteuning van trapezius en core."
+  },
+  {
+    "id": 36,
+    "name": "Dumbbell Shrug",
+    "primaryMuscle": "Trapezius",
+    "equipment": "Dumbbells",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Levator scapulae",
+      "Rhomboids",
+      "Onderarmen/Grip"
+    ],
+    "description": "Hef de schouders recht omhoog tegen weerstand en laat ze gecontroleerd zakken. Richt zich vooral op de trapezius en vraagt stevige grip."
+  },
+  {
+    "id": 37,
+    "name": "Face Pull",
+    "primaryMuscle": "Schouders/Rug",
+    "equipment": "Kabel",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Achterste schouderkop",
+      "Rhomboids",
+      "Middelste/onderste trapezius",
+      "Rotator cuff",
+      "Biceps"
+    ],
+    "description": "Trek de kabel richting gezicht met ellebogen hoog en roteer gecontroleerd naar buiten. Sterk voor achterste schouders, bovenrug en rotator cuff."
+  },
+  {
+    "id": 38,
+    "name": "Farmer's Walk",
+    "primaryMuscle": "Full body",
+    "equipment": "Dumbbells/Kettlebells",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Onderarmen/Grip",
+      "Trapezius",
+      "Core",
+      "Obliques",
+      "Schouders",
+      "Glutes",
+      "Kuiten"
+    ],
+    "description": "Draag of houd een zware belasting met een lange, stabiele houding. Train grip, core, trapezius en totale lichaamsstabiliteit tijdens het lopen."
+  },
+  {
+    "id": 39,
+    "name": "Front Raise",
+    "primaryMuscle": "Schouders",
+    "equipment": "Dumbbells",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Pectoralis major (bovenkant)",
+      "Middelste schouderkop",
+      "Trapezius",
+      "Serratus anterior"
+    ],
+    "description": "Hef de weerstand voor het lichaam tot ongeveer schouderhoogte. Houd de romp stil en laat de voorste schouderkop gecontroleerd het werk doen."
+  },
+  {
+    "id": 40,
+    "name": "Front Squat",
+    "primaryMuscle": "Quadriceps/Glutes",
+    "equipment": "Barbell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Gluteus maximus",
+      "Adductoren",
+      "Kuiten",
+      "Core"
+    ],
+    "description": "Train vooral quadriceps/glutes door gecontroleerd te buigen en krachtig te strekken. Houd je romp stabiel en laat knieën in lijn met de voeten bewegen."
+  },
+  {
+    "id": 41,
+    "name": "Goblet Squat",
+    "primaryMuscle": "Benen/Glutes",
+    "equipment": "Dumbbell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Gluteus maximus",
+      "Adductoren",
+      "Kuiten",
+      "Core"
+    ],
+    "description": "Train vooral benen/glutes door gecontroleerd te buigen en krachtig te strekken. Houd je romp stabiel en laat knieën in lijn met de voeten bewegen."
+  },
+  {
+    "id": 42,
+    "name": "Glute Bridge",
+    "primaryMuscle": "Glutes",
+    "equipment": "Lichaamsgewicht",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Adductoren",
+      "Gluteus medius",
+      "Core"
+    ],
+    "description": "Strek de heupen krachtig en span de bilspieren bovenin aan. Houd ribben en bekken gecontroleerd voor maximale spanning op de glutes."
+  },
+  {
+    "id": 43,
+    "name": "Hammer Curl",
+    "primaryMuscle": "Biceps",
+    "equipment": "Dumbbells",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Brachialis",
+      "Brachioradialis",
+      "Onderarmen"
+    ],
+    "description": "Buig de ellebogen tegen weerstand en houd de bovenarmen zo stil mogelijk. Laat het gewicht gecontroleerd zakken voor constante spanning op arm en onderarm."
+  },
+  {
+    "id": 44,
+    "name": "Hack Squat",
+    "primaryMuscle": "Quadriceps",
+    "equipment": "Machine",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Gluteus maximus",
+      "Adductoren",
+      "Kuiten",
+      "Core"
+    ],
+    "description": "Train vooral quadriceps door gecontroleerd te buigen en krachtig te strekken. Houd je romp stabiel en laat knieën in lijn met de voeten bewegen."
+  },
+  {
+    "id": 45,
+    "name": "Hanging Leg Raise",
+    "primaryMuscle": "Core",
+    "equipment": "Lichaamsgewicht",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Transversus abdominis",
+      "Obliques",
+      "Heupflexoren"
+    ],
+    "description": "Breng benen of knieën gecontroleerd omhoog vanuit de core. Beperk zwaaien en kantel het bekken actief om de buikspieren effectief te belasten."
+  },
+  {
+    "id": 46,
+    "name": "Hip Thrust",
+    "primaryMuscle": "Glutes",
+    "equipment": "Barbell/Machine",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Adductoren",
+      "Gluteus medius",
+      "Core"
+    ],
+    "description": "Strek de heupen krachtig en span de bilspieren bovenin aan. Houd ribben en bekken gecontroleerd voor maximale spanning op de glutes."
+  },
+  {
+    "id": 47,
+    "name": "Incline Bench Press",
+    "primaryMuscle": "Borst",
+    "equipment": "Barbell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Duw het gewicht gecontroleerd van je af en houd schouderbladen stabiel. Train vooral borst en triceps, met ondersteuning van de voorste schouders."
+  },
+  {
+    "id": 48,
+    "name": "Incline Bench Press (Dumbbell)",
+    "primaryMuscle": "Borst",
+    "equipment": "Dumbbells",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Duw het gewicht gecontroleerd van je af en houd schouderbladen stabiel. Train vooral borst en triceps, met ondersteuning van de voorste schouders."
+  },
+  {
+    "id": 49,
+    "name": "Incline Curl",
+    "primaryMuscle": "Biceps",
+    "equipment": "Dumbbells",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Brachialis",
+      "Brachioradialis",
+      "Onderarmen"
+    ],
+    "description": "Buig de ellebogen tegen weerstand en houd de bovenarmen zo stil mogelijk. Laat het gewicht gecontroleerd zakken voor constante spanning op arm en onderarm."
+  },
+  {
+    "id": 50,
+    "name": "Kettlebell Swing",
+    "primaryMuscle": "Glutes/Hamstrings",
+    "equipment": "Kettlebell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Gluteus maximus",
+      "Hamstrings",
+      "Erector spinae",
+      "Core",
+      "Schouders",
+      "Onderarmen/Grip"
+    ],
+    "description": "Explosieve heupstrekking waarbij de kettlebell door momentum naar voren beweegt. De kracht komt uit glutes en hamstrings, niet uit de armen."
+  },
+  {
+    "id": 51,
+    "name": "Lat Pulldown",
+    "primaryMuscle": "Rug",
+    "equipment": "Kabel/Machine",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Biceps",
+      "Brachialis",
+      "Rhomboids",
+      "Trapezius",
+      "Achterste schouderkop",
+      "Onderarmen/Grip",
+      "Core"
+    ],
+    "description": "Trek vanuit de rug en breng de ellebogen richting je zij. Houd de borst trots en controleer de terugweg voor spanning op lats, biceps en bovenrug."
+  },
+  {
+    "id": 52,
+    "name": "Lateral Raise",
+    "primaryMuscle": "Schouders",
+    "equipment": "Dumbbells",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Supraspinatus",
+      "Voorste schouderkop",
+      "Trapezius",
+      "Serratus anterior"
+    ],
+    "description": "Hef de armen zijwaarts tot ongeveer schouderhoogte met licht gebogen ellebogen. Gebruik weinig momentum en houd spanning op de middelste schouderkop."
+  },
+  {
+    "id": 53,
+    "name": "Leg Curl",
+    "primaryMuscle": "Hamstrings",
+    "equipment": "Machine",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Gastrocnemius",
+      "Gluteus maximus",
+      "Core"
+    ],
+    "description": "Buig de knie tegen weerstand en train vooral de hamstrings. Werk gecontroleerd door de volledige bewegingsuitslag en vermijd momentum."
+  },
+  {
+    "id": 54,
+    "name": "Leg Extension",
+    "primaryMuscle": "Quadriceps",
+    "equipment": "Machine",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Rectus femoris",
+      "Vastus medialis",
+      "Vastus lateralis",
+      "Core"
+    ],
+    "description": "Richt de belasting op de quadriceps door de knie gecontroleerd te strekken. Houd de beweging rustig en voorkom zwaaien of onnodig momentum."
+  },
+  {
+    "id": 55,
+    "name": "Leg Press",
+    "primaryMuscle": "Quadriceps/Glutes",
+    "equipment": "Machine",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Gluteus maximus",
+      "Adductoren",
+      "Kuiten",
+      "Core"
+    ],
+    "description": "Train vooral quadriceps/glutes door gecontroleerd te buigen en krachtig te strekken. Houd je romp stabiel en laat knieën in lijn met de voeten bewegen."
+  },
+  {
+    "id": 56,
+    "name": "Leg Raise",
+    "primaryMuscle": "Core",
+    "equipment": "Lichaamsgewicht",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Transversus abdominis",
+      "Obliques",
+      "Heupflexoren"
+    ],
+    "description": "Breng benen of knieën gecontroleerd omhoog vanuit de core. Beperk zwaaien en kantel het bekken actief om de buikspieren effectief te belasten."
+  },
+  {
+    "id": 57,
+    "name": "Lying Leg Curl",
+    "primaryMuscle": "Hamstrings",
+    "equipment": "Machine",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Gastrocnemius",
+      "Gluteus maximus",
+      "Core"
+    ],
+    "description": "Buig de knie tegen weerstand en train vooral de hamstrings. Werk gecontroleerd door de volledige bewegingsuitslag en vermijd momentum."
+  },
+  {
+    "id": 58,
+    "name": "Military Press",
+    "primaryMuscle": "Schouders",
+    "equipment": "Barbell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Middelste schouderkop",
+      "Trapezius",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Duw de weerstand boven het hoofd terwijl je romp stabiel blijft. Train vooral de schouders en triceps, met ondersteuning van trapezius en core."
+  },
+  {
+    "id": 59,
+    "name": "Overhead Press",
+    "primaryMuscle": "Schouders",
+    "equipment": "Barbell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Middelste schouderkop",
+      "Trapezius",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Duw de weerstand boven het hoofd terwijl je romp stabiel blijft. Train vooral de schouders en triceps, met ondersteuning van trapezius en core."
+  },
+  {
+    "id": 60,
+    "name": "Overhead Triceps Extension",
+    "primaryMuscle": "Triceps",
+    "equipment": "Dumbbell/Kabel",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Voorste schouderkop",
+      "Borst",
+      "Anconeus",
+      "Core"
+    ],
+    "description": "Strek de ellebogen tegen weerstand en houd de bovenarmen gecontroleerd. Richt zich op de triceps, met extra stabilisatie vanuit schouders en romp."
+  },
+  {
+    "id": 61,
+    "name": "Plank",
+    "primaryMuscle": "Core",
+    "equipment": "Lichaamsgewicht",
+    "type": "Isometrisch",
+    "secondaryMuscles": [
+      "Transversus abdominis",
+      "Obliques",
+      "Glutes",
+      "Schouders",
+      "Serratus anterior"
+    ],
+    "description": "Houd het lichaam in een stevige rechte lijn en span buik, billen en schouders aan. Een isometrische oefening voor rompstijfheid en stabiliteit."
+  },
+  {
+    "id": 62,
+    "name": "Preacher Curl",
+    "primaryMuscle": "Biceps",
+    "equipment": "Machine/EZ-bar",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Brachialis",
+      "Brachioradialis",
+      "Onderarmen"
+    ],
+    "description": "Buig de ellebogen tegen weerstand en houd de bovenarmen zo stil mogelijk. Laat het gewicht gecontroleerd zakken voor constante spanning op arm en onderarm."
+  },
+  {
+    "id": 63,
+    "name": "Pull Up",
+    "primaryMuscle": "Rug/Biceps",
+    "equipment": "Lichaamsgewicht",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Biceps",
+      "Brachialis",
+      "Rhomboids",
+      "Trapezius",
+      "Achterste schouderkop",
+      "Onderarmen/Grip",
+      "Core"
+    ],
+    "description": "Trek vanuit de rug en breng de ellebogen richting je zij. Houd de borst trots en controleer de terugweg voor spanning op lats, biceps en bovenrug."
+  },
+  {
+    "id": 64,
+    "name": "Push Up",
+    "primaryMuscle": "Borst/Triceps",
+    "equipment": "Lichaamsgewicht",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Duw het gewicht gecontroleerd van je af en houd schouderbladen stabiel. Train vooral borst en triceps, met ondersteuning van de voorste schouders."
+  },
+  {
+    "id": 65,
+    "name": "Rear Delt Fly",
+    "primaryMuscle": "Schouders",
+    "equipment": "Dumbbells",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Rhomboids",
+      "Trapezius",
+      "Rotator cuff",
+      "Bovenrug"
+    ],
+    "description": "Beweeg de armen naar buiten en achteren terwijl de schouderbladen gecontroleerd bewegen. Richt zich op achterste schouders en spieren van de bovenrug."
+  },
+  {
+    "id": 66,
+    "name": "Romanian Deadlift",
+    "primaryMuscle": "Hamstrings/Glutes",
+    "equipment": "Barbell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Erector spinae",
+      "Gluteus maximus",
+      "Hamstrings",
+      "Adductoren",
+      "Core",
+      "Onderarmen/Grip",
+      "Latissimus dorsi"
+    ],
+    "description": "Een heupdominante beweging voor de achterste keten. Beweeg vanuit de heupen, houd de rug neutraal en strek krachtig door met billen en hamstrings."
+  },
+  {
+    "id": 67,
+    "name": "Romanian Deadlift (Dumbbell)",
+    "primaryMuscle": "Hamstrings/Glutes",
+    "equipment": "Dumbbells",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Erector spinae",
+      "Gluteus maximus",
+      "Hamstrings",
+      "Adductoren",
+      "Core",
+      "Onderarmen/Grip",
+      "Latissimus dorsi"
+    ],
+    "description": "Een heupdominante beweging voor de achterste keten. Beweeg vanuit de heupen, houd de rug neutraal en strek krachtig door met billen en hamstrings."
+  },
+  {
+    "id": 68,
+    "name": "Reverse Curl",
+    "primaryMuscle": "Biceps/Unterarm",
+    "equipment": "Barbell",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Brachialis",
+      "Brachioradialis",
+      "Onderarmen",
+      "Gripspieren"
+    ],
+    "description": "Buig de ellebogen tegen weerstand en houd de bovenarmen zo stil mogelijk. Laat het gewicht gecontroleerd zakken voor constante spanning op arm en onderarm."
+  },
+  {
+    "id": 69,
+    "name": "Seated Calf Raise",
+    "primaryMuscle": "Kuiten",
+    "equipment": "Machine",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Soleus",
+      "Gastrocnemius",
+      "Tibialis posterior",
+      "Voet- en enkelstabilisatoren"
+    ],
+    "description": "Strek de enkels volledig en kom hoog op de voorvoet. Laat de hielen gecontroleerd zakken voor een grote bewegingsuitslag en sterke kuitcontractie."
+  },
+  {
+    "id": 70,
+    "name": "Seated Leg Curl",
+    "primaryMuscle": "Hamstrings",
+    "equipment": "Machine",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Gastrocnemius",
+      "Gluteus maximus",
+      "Core"
+    ],
+    "description": "Buig de knie tegen weerstand en train vooral de hamstrings. Werk gecontroleerd door de volledige bewegingsuitslag en vermijd momentum."
+  },
+  {
+    "id": 71,
+    "name": "Seated Row",
+    "primaryMuscle": "Rug",
+    "equipment": "Kabel",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Biceps",
+      "Rhomboids",
+      "Trapezius",
+      "Achterste schouderkop",
+      "Onderarmen/Grip",
+      "Core"
+    ],
+    "description": "Trek de weerstand richting je romp en beweeg de schouderbladen naar achteren. Houd de borst stabiel en voorkom dat momentum het werk overneemt."
+  },
+  {
+    "id": 72,
+    "name": "Shoulder Press",
+    "primaryMuscle": "Schouders",
+    "equipment": "Machine",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Middelste schouderkop",
+      "Trapezius",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Duw de weerstand boven het hoofd terwijl je romp stabiel blijft. Train vooral de schouders en triceps, met ondersteuning van trapezius en core."
+  },
+  {
+    "id": 73,
+    "name": "Side Plank",
+    "primaryMuscle": "Core",
+    "equipment": "Lichaamsgewicht",
+    "type": "Isometrisch",
+    "secondaryMuscles": [
+      "Transversus abdominis",
+      "Obliques",
+      "Glutes",
+      "Schouders",
+      "Serratus anterior"
+    ],
+    "description": "Houd het lichaam in een stevige rechte lijn en span buik, billen en schouders aan. Een isometrische oefening voor rompstijfheid en stabiliteit."
+  },
+  {
+    "id": 74,
+    "name": "Skullcrusher",
+    "primaryMuscle": "Triceps",
+    "equipment": "Barbell",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Voorste schouderkop",
+      "Borst",
+      "Anconeus",
+      "Core"
+    ],
+    "description": "Strek de ellebogen tegen weerstand en houd de bovenarmen gecontroleerd. Richt zich op de triceps, met extra stabilisatie vanuit schouders en romp."
+  },
+  {
+    "id": 75,
+    "name": "Squat",
+    "primaryMuscle": "Quadriceps/Glutes",
+    "equipment": "Barbell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Gluteus maximus",
+      "Adductoren",
+      "Kuiten",
+      "Core"
+    ],
+    "description": "Train vooral quadriceps/glutes door gecontroleerd te buigen en krachtig te strekken. Houd je romp stabiel en laat knieën in lijn met de voeten bewegen."
+  },
+  {
+    "id": 76,
+    "name": "Standing Calf Raise",
+    "primaryMuscle": "Kuiten",
+    "equipment": "Machine",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Soleus",
+      "Gastrocnemius",
+      "Tibialis posterior",
+      "Voet- en enkelstabilisatoren"
+    ],
+    "description": "Strek de enkels volledig en kom hoog op de voorvoet. Laat de hielen gecontroleerd zakken voor een grote bewegingsuitslag en sterke kuitcontractie."
+  },
+  {
+    "id": 77,
+    "name": "Standing Calf Raise (Dumbbell)",
+    "primaryMuscle": "Kuiten",
+    "equipment": "Dumbbells",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Soleus",
+      "Gastrocnemius",
+      "Tibialis posterior",
+      "Voet- en enkelstabilisatoren"
+    ],
+    "description": "Strek de enkels volledig en kom hoog op de voorvoet. Laat de hielen gecontroleerd zakken voor een grote bewegingsuitslag en sterke kuitcontractie."
+  },
+  {
+    "id": 78,
+    "name": "Stiff Leg Deadlift",
+    "primaryMuscle": "Hamstrings/Glutes",
+    "equipment": "Barbell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Erector spinae",
+      "Gluteus maximus",
+      "Hamstrings",
+      "Adductoren",
+      "Core",
+      "Onderarmen/Grip",
+      "Latissimus dorsi"
+    ],
+    "description": "Een heupdominante beweging voor de achterste keten. Beweeg vanuit de heupen, houd de rug neutraal en strek krachtig door met billen en hamstrings."
+  },
+  {
+    "id": 79,
+    "name": "Straight Arm Pulldown",
+    "primaryMuscle": "Rug",
+    "equipment": "Kabel",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Biceps",
+      "Brachialis",
+      "Rhomboids",
+      "Trapezius",
+      "Achterste schouderkop",
+      "Onderarmen/Grip",
+      "Core"
+    ],
+    "description": "Trek vanuit de rug en breng de ellebogen richting je zij. Houd de borst trots en controleer de terugweg voor spanning op lats, biceps en bovenrug."
+  },
+  {
+    "id": 80,
+    "name": "T-Bar Row",
+    "primaryMuscle": "Rug",
+    "equipment": "Barbell/Machine",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Biceps",
+      "Rhomboids",
+      "Trapezius",
+      "Achterste schouderkop",
+      "Onderarmen/Grip",
+      "Core"
+    ],
+    "description": "Trek de weerstand richting je romp en beweeg de schouderbladen naar achteren. Houd de borst stabiel en voorkom dat momentum het werk overneemt."
+  },
+  {
+    "id": 81,
+    "name": "Triceps Dip",
+    "primaryMuscle": "Triceps/Borst",
+    "equipment": "Lichaamsgewicht",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Voorste schouderkop",
+      "Borst",
+      "Anconeus",
+      "Core"
+    ],
+    "description": "Strek de ellebogen tegen weerstand en houd de bovenarmen gecontroleerd. Richt zich op de triceps, met extra stabilisatie vanuit schouders en romp."
+  },
+  {
+    "id": 82,
+    "name": "Triceps Pushdown",
+    "primaryMuscle": "Triceps",
+    "equipment": "Kabel",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Voorste schouderkop",
+      "Borst",
+      "Anconeus",
+      "Core"
+    ],
+    "description": "Strek de ellebogen tegen weerstand en houd de bovenarmen gecontroleerd. Richt zich op de triceps, met extra stabilisatie vanuit schouders en romp."
+  },
+  {
+    "id": 83,
+    "name": "Upright Row",
+    "primaryMuscle": "Schouders/Trapezius",
+    "equipment": "Barbell/Dumbbells",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Biceps",
+      "Rhomboids",
+      "Trapezius",
+      "Achterste schouderkop",
+      "Onderarmen/Grip",
+      "Core"
+    ],
+    "description": "Trek de weerstand richting je romp en beweeg de schouderbladen naar achteren. Houd de borst stabiel en voorkom dat momentum het werk overneemt."
+  },
+  {
+    "id": 84,
+    "name": "Walking Lunge",
+    "primaryMuscle": "Benen/Glutes",
+    "equipment": "Dumbbells",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Gluteus maximus",
+      "Adductoren",
+      "Kuiten",
+      "Core"
+    ],
+    "description": "Train vooral benen/glutes door gecontroleerd te buigen en krachtig te strekken. Houd je romp stabiel en laat knieën in lijn met de voeten bewegen."
+  },
+  {
+    "id": 85,
+    "name": "Reverse Lunge",
+    "primaryMuscle": "Benen/Glutes",
+    "equipment": "Dumbbells",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Gluteus maximus",
+      "Adductoren",
+      "Kuiten",
+      "Core"
+    ],
+    "description": "Train vooral benen/glutes door gecontroleerd te buigen en krachtig te strekken. Houd je romp stabiel en laat knieën in lijn met de voeten bewegen."
+  },
+  {
+    "id": 86,
+    "name": "Forward Lunge",
+    "primaryMuscle": "Benen/Glutes",
+    "equipment": "Dumbbells",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Gluteus maximus",
+      "Adductoren",
+      "Kuiten",
+      "Core"
+    ],
+    "description": "Train vooral benen/glutes door gecontroleerd te buigen en krachtig te strekken. Houd je romp stabiel en laat knieën in lijn met de voeten bewegen."
+  },
+  {
+    "id": 87,
+    "name": "Step Up",
+    "primaryMuscle": "Benen/Glutes",
+    "equipment": "Dumbbells",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Gluteus maximus",
+      "Adductoren",
+      "Kuiten",
+      "Core"
+    ],
+    "description": "Train vooral benen/glutes door gecontroleerd te buigen en krachtig te strekken. Houd je romp stabiel en laat knieën in lijn met de voeten bewegen."
+  },
+  {
+    "id": 88,
+    "name": "Sumo Squat",
+    "primaryMuscle": "Benen/Glutes",
+    "equipment": "Barbell/Dumbbell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Gluteus maximus",
+      "Adductoren",
+      "Kuiten",
+      "Core"
+    ],
+    "description": "Train vooral benen/glutes door gecontroleerd te buigen en krachtig te strekken. Houd je romp stabiel en laat knieën in lijn met de voeten bewegen."
+  },
+  {
+    "id": 89,
+    "name": "Sumo Deadlift",
+    "primaryMuscle": "Benen/Rug",
+    "equipment": "Barbell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Erector spinae",
+      "Gluteus maximus",
+      "Hamstrings",
+      "Quadriceps",
+      "Adductoren",
+      "Core",
+      "Onderarmen/Grip",
+      "Latissimus dorsi"
+    ],
+    "description": "Een heupdominante beweging voor de achterste keten. Beweeg vanuit de heupen, houd de rug neutraal en strek krachtig door met billen en hamstrings."
+  },
+  {
+    "id": 90,
+    "name": "Good Morning",
+    "primaryMuscle": "Hamstrings/Glutes",
+    "equipment": "Barbell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Erector spinae",
+      "Gluteus maximus",
+      "Hamstrings",
+      "Adductoren",
+      "Core",
+      "Onderarmen/Grip",
+      "Latissimus dorsi"
+    ],
+    "description": "Een heupdominante beweging voor de achterste keten. Beweeg vanuit de heupen, houd de rug neutraal en strek krachtig door met billen en hamstrings."
+  },
+  {
+    "id": 91,
+    "name": "Hip Abduction",
+    "primaryMuscle": "Glutes",
+    "equipment": "Machine",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Gluteus medius",
+      "Gluteus minimus",
+      "Hamstrings",
+      "Core"
+    ],
+    "description": "Voer Hip Abduction gecontroleerd uit met focus op glutes. Gebruik een stabiele houding, volledige bewegingsuitslag en vermijd onnodig momentum."
+  },
+  {
+    "id": 92,
+    "name": "Hip Adduction",
+    "primaryMuscle": "Adductoren",
+    "equipment": "Machine",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Gracilis",
+      "Pectineus",
+      "Hamstrings",
+      "Core"
+    ],
+    "description": "Voer Hip Adduction gecontroleerd uit met focus op adductoren. Gebruik een stabiele houding, volledige bewegingsuitslag en vermijd onnodig momentum."
+  },
+  {
+    "id": 93,
+    "name": "Glute Kickback",
+    "primaryMuscle": "Glutes",
+    "equipment": "Machine",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Gluteus medius",
+      "Gluteus minimus",
+      "Hamstrings",
+      "Core"
+    ],
+    "description": "Voer Glute Kickback gecontroleerd uit met focus op glutes. Gebruik een stabiele houding, volledige bewegingsuitslag en vermijd onnodig momentum."
+  },
+  {
+    "id": 94,
+    "name": "Cable Pull Through",
+    "primaryMuscle": "Glutes/Hamstrings",
+    "equipment": "Kabel",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Erector spinae",
+      "Gluteus maximus",
+      "Hamstrings",
+      "Adductoren",
+      "Core",
+      "Onderarmen/Grip",
+      "Latissimus dorsi"
+    ],
+    "description": "Een heupdominante beweging voor de achterste keten. Beweeg vanuit de heupen, houd de rug neutraal en strek krachtig door met billen en hamstrings."
+  },
+  {
+    "id": 95,
+    "name": "Nordic Hamstring Curl",
+    "primaryMuscle": "Hamstrings",
+    "equipment": "Lichaamsgewicht",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Gastrocnemius",
+      "Gluteus maximus",
+      "Core"
+    ],
+    "description": "Buig de knie tegen weerstand en train vooral de hamstrings. Werk gecontroleerd door de volledige bewegingsuitslag en vermijd momentum."
+  },
+  {
+    "id": 96,
+    "name": "Single Leg Romanian Deadlift",
+    "primaryMuscle": "Hamstrings/Glutes",
+    "equipment": "Dumbbell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Erector spinae",
+      "Gluteus maximus",
+      "Hamstrings",
+      "Adductoren",
+      "Core",
+      "Onderarmen/Grip",
+      "Latissimus dorsi"
+    ],
+    "description": "Een heupdominante beweging voor de achterste keten. Beweeg vanuit de heupen, houd de rug neutraal en strek krachtig door met billen en hamstrings."
+  },
+  {
+    "id": 97,
+    "name": "Single Leg Hip Thrust",
+    "primaryMuscle": "Glutes",
+    "equipment": "Lichaamsgewicht",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Adductoren",
+      "Gluteus medius",
+      "Core"
+    ],
+    "description": "Strek de heupen krachtig en span de bilspieren bovenin aan. Houd ribben en bekken gecontroleerd voor maximale spanning op de glutes."
+  },
+  {
+    "id": 98,
+    "name": "Bulgarian Split Squat (Dumbbell)",
+    "primaryMuscle": "Quadriceps/Glutes",
+    "equipment": "Dumbbells",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Gluteus maximus",
+      "Adductoren",
+      "Kuiten",
+      "Core"
+    ],
+    "description": "Train vooral quadriceps/glutes door gecontroleerd te buigen en krachtig te strekken. Houd je romp stabiel en laat knieën in lijn met de voeten bewegen."
+  },
+  {
+    "id": 99,
+    "name": "Leg Press (Single Leg)",
+    "primaryMuscle": "Quadriceps/Glutes",
+    "equipment": "Machine",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Gluteus maximus",
+      "Adductoren",
+      "Kuiten",
+      "Core"
+    ],
+    "description": "Train vooral quadriceps/glutes door gecontroleerd te buigen en krachtig te strekken. Houd je romp stabiel en laat knieën in lijn met de voeten bewegen."
+  },
+  {
+    "id": 100,
+    "name": "Sissy Squat",
+    "primaryMuscle": "Quadriceps",
+    "equipment": "Lichaamsgewicht",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Gluteus maximus",
+      "Adductoren",
+      "Kuiten",
+      "Core"
+    ],
+    "description": "Train vooral quadriceps door gecontroleerd te buigen en krachtig te strekken. Houd je romp stabiel en laat knieën in lijn met de voeten bewegen."
+  },
+  {
+    "id": 101,
+    "name": "Hack Squat (Machine)",
+    "primaryMuscle": "Quadriceps",
+    "equipment": "Machine",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Gluteus maximus",
+      "Adductoren",
+      "Kuiten",
+      "Core"
+    ],
+    "description": "Train vooral quadriceps door gecontroleerd te buigen en krachtig te strekken. Houd je romp stabiel en laat knieën in lijn met de voeten bewegen."
+  },
+  {
+    "id": 102,
+    "name": "Belt Squat",
+    "primaryMuscle": "Quadriceps/Glutes",
+    "equipment": "Machine",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Gluteus maximus",
+      "Adductoren",
+      "Kuiten",
+      "Core"
+    ],
+    "description": "Train vooral quadriceps/glutes door gecontroleerd te buigen en krachtig te strekken. Houd je romp stabiel en laat knieën in lijn met de voeten bewegen."
+  },
+  {
+    "id": 103,
+    "name": "Pendulum Squat",
+    "primaryMuscle": "Quadriceps/Glutes",
+    "equipment": "Machine",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Gluteus maximus",
+      "Adductoren",
+      "Kuiten",
+      "Core"
+    ],
+    "description": "Train vooral quadriceps/glutes door gecontroleerd te buigen en krachtig te strekken. Houd je romp stabiel en laat knieën in lijn met de voeten bewegen."
+  },
+  {
+    "id": 104,
+    "name": "Smith Machine Squat",
+    "primaryMuscle": "Benen/Glutes",
+    "equipment": "Smith machine",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Gluteus maximus",
+      "Adductoren",
+      "Kuiten",
+      "Core"
+    ],
+    "description": "Train vooral benen/glutes door gecontroleerd te buigen en krachtig te strekken. Houd je romp stabiel en laat knieën in lijn met de voeten bewegen."
+  },
+  {
+    "id": 105,
+    "name": "Smith Machine Bench Press",
+    "primaryMuscle": "Borst",
+    "equipment": "Smith machine",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Duw het gewicht gecontroleerd van je af en houd schouderbladen stabiel. Train vooral borst en triceps, met ondersteuning van de voorste schouders."
+  },
+  {
+    "id": 106,
+    "name": "Smith Machine Incline Press",
+    "primaryMuscle": "Borst",
+    "equipment": "Smith machine",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Serratus anterior"
+    ],
+    "description": "Voer Smith Machine Incline Press gecontroleerd uit met focus op borst. Gebruik een stabiele houding, volledige bewegingsuitslag en vermijd onnodig momentum."
+  },
+  {
+    "id": 107,
+    "name": "Smith Machine Shoulder Press",
+    "primaryMuscle": "Schouders",
+    "equipment": "Smith machine",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Middelste schouderkop",
+      "Trapezius",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Duw de weerstand boven het hoofd terwijl je romp stabiel blijft. Train vooral de schouders en triceps, met ondersteuning van trapezius en core."
+  },
+  {
+    "id": 108,
+    "name": "Smith Machine Romanian Deadlift",
+    "primaryMuscle": "Hamstrings/Glutes",
+    "equipment": "Smith machine",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Erector spinae",
+      "Gluteus maximus",
+      "Hamstrings",
+      "Adductoren",
+      "Core",
+      "Onderarmen/Grip",
+      "Latissimus dorsi"
+    ],
+    "description": "Een heupdominante beweging voor de achterste keten. Beweeg vanuit de heupen, houd de rug neutraal en strek krachtig door met billen en hamstrings."
+  },
+  {
+    "id": 109,
+    "name": "Machine Row",
+    "primaryMuscle": "Rug",
+    "equipment": "Machine",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Biceps",
+      "Rhomboids",
+      "Trapezius",
+      "Achterste schouderkop",
+      "Onderarmen/Grip",
+      "Core"
+    ],
+    "description": "Trek de weerstand richting je romp en beweeg de schouderbladen naar achteren. Houd de borst stabiel en voorkom dat momentum het werk overneemt."
+  },
+  {
+    "id": 110,
+    "name": "Chest Supported Row",
+    "primaryMuscle": "Rug",
+    "equipment": "Machine/Dumbbells",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Biceps",
+      "Rhomboids",
+      "Trapezius",
+      "Achterste schouderkop",
+      "Onderarmen/Grip",
+      "Core"
+    ],
+    "description": "Trek de weerstand richting je romp en beweeg de schouderbladen naar achteren. Houd de borst stabiel en voorkom dat momentum het werk overneemt."
+  },
+  {
+    "id": 111,
+    "name": "Incline Dumbbell Row",
+    "primaryMuscle": "Rug",
+    "equipment": "Dumbbells",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Biceps",
+      "Rhomboids",
+      "Trapezius",
+      "Achterste schouderkop",
+      "Onderarmen/Grip",
+      "Core"
+    ],
+    "description": "Trek de weerstand richting je romp en beweeg de schouderbladen naar achteren. Houd de borst stabiel en voorkom dat momentum het werk overneemt."
+  },
+  {
+    "id": 112,
+    "name": "Single Arm Cable Row",
+    "primaryMuscle": "Rug",
+    "equipment": "Kabel",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Biceps",
+      "Rhomboids",
+      "Trapezius",
+      "Achterste schouderkop",
+      "Onderarmen/Grip",
+      "Core"
+    ],
+    "description": "Trek de weerstand richting je romp en beweeg de schouderbladen naar achteren. Houd de borst stabiel en voorkom dat momentum het werk overneemt."
+  },
+  {
+    "id": 113,
+    "name": "Single Arm Lat Pulldown",
+    "primaryMuscle": "Rug",
+    "equipment": "Kabel",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Biceps",
+      "Brachialis",
+      "Rhomboids",
+      "Trapezius",
+      "Achterste schouderkop",
+      "Onderarmen/Grip",
+      "Core"
+    ],
+    "description": "Trek vanuit de rug en breng de ellebogen richting je zij. Houd de borst trots en controleer de terugweg voor spanning op lats, biceps en bovenrug."
+  },
+  {
+    "id": 114,
+    "name": "Close Grip Lat Pulldown",
+    "primaryMuscle": "Rug/Biceps",
+    "equipment": "Kabel",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Biceps",
+      "Brachialis",
+      "Rhomboids",
+      "Trapezius",
+      "Achterste schouderkop",
+      "Onderarmen/Grip",
+      "Core"
+    ],
+    "description": "Trek vanuit de rug en breng de ellebogen richting je zij. Houd de borst trots en controleer de terugweg voor spanning op lats, biceps en bovenrug."
+  },
+  {
+    "id": 115,
+    "name": "Wide Grip Lat Pulldown",
+    "primaryMuscle": "Rug",
+    "equipment": "Kabel",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Biceps",
+      "Brachialis",
+      "Rhomboids",
+      "Trapezius",
+      "Achterste schouderkop",
+      "Onderarmen/Grip",
+      "Core"
+    ],
+    "description": "Trek vanuit de rug en breng de ellebogen richting je zij. Houd de borst trots en controleer de terugweg voor spanning op lats, biceps en bovenrug."
+  },
+  {
+    "id": 116,
+    "name": "Neutral Grip Lat Pulldown",
+    "primaryMuscle": "Rug",
+    "equipment": "Kabel",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Biceps",
+      "Brachialis",
+      "Rhomboids",
+      "Trapezius",
+      "Achterste schouderkop",
+      "Onderarmen/Grip",
+      "Core"
+    ],
+    "description": "Trek vanuit de rug en breng de ellebogen richting je zij. Houd de borst trots en controleer de terugweg voor spanning op lats, biceps en bovenrug."
+  },
+  {
+    "id": 117,
+    "name": "Assisted Pull Up",
+    "primaryMuscle": "Rug/Biceps",
+    "equipment": "Machine",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Biceps",
+      "Brachialis",
+      "Rhomboids",
+      "Trapezius",
+      "Achterste schouderkop",
+      "Onderarmen/Grip",
+      "Core"
+    ],
+    "description": "Trek vanuit de rug en breng de ellebogen richting je zij. Houd de borst trots en controleer de terugweg voor spanning op lats, biceps en bovenrug."
+  },
+  {
+    "id": 118,
+    "name": "Assisted Chin Up",
+    "primaryMuscle": "Rug/Biceps",
+    "equipment": "Machine",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Biceps",
+      "Brachialis",
+      "Rhomboids",
+      "Trapezius",
+      "Achterste schouderkop",
+      "Onderarmen/Grip",
+      "Core"
+    ],
+    "description": "Trek vanuit de rug en breng de ellebogen richting je zij. Houd de borst trots en controleer de terugweg voor spanning op lats, biceps en bovenrug."
+  },
+  {
+    "id": 119,
+    "name": "Inverted Row",
+    "primaryMuscle": "Rug/Biceps",
+    "equipment": "Lichaamsgewicht",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Biceps",
+      "Rhomboids",
+      "Trapezius",
+      "Achterste schouderkop",
+      "Onderarmen/Grip",
+      "Core"
+    ],
+    "description": "Trek de weerstand richting je romp en beweeg de schouderbladen naar achteren. Houd de borst stabiel en voorkom dat momentum het werk overneemt."
+  },
+  {
+    "id": 120,
+    "name": "Rack Pull",
+    "primaryMuscle": "Rug",
+    "equipment": "Barbell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Erector spinae",
+      "Gluteus maximus",
+      "Hamstrings",
+      "Adductoren",
+      "Core",
+      "Onderarmen/Grip",
+      "Latissimus dorsi"
+    ],
+    "description": "Een heupdominante beweging voor de achterste keten. Beweeg vanuit de heupen, houd de rug neutraal en strek krachtig door met billen en hamstrings."
+  },
+  {
+    "id": 121,
+    "name": "Barbell Shrug",
+    "primaryMuscle": "Trapezius",
+    "equipment": "Barbell",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Levator scapulae",
+      "Rhomboids",
+      "Onderarmen/Grip"
+    ],
+    "description": "Hef de schouders recht omhoog tegen weerstand en laat ze gecontroleerd zakken. Richt zich vooral op de trapezius en vraagt stevige grip."
+  },
+  {
+    "id": 122,
+    "name": "Cable Shrug",
+    "primaryMuscle": "Trapezius",
+    "equipment": "Kabel",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Levator scapulae",
+      "Rhomboids",
+      "Onderarmen/Grip"
+    ],
+    "description": "Hef de schouders recht omhoog tegen weerstand en laat ze gecontroleerd zakken. Richt zich vooral op de trapezius en vraagt stevige grip."
+  },
+  {
+    "id": 123,
+    "name": "Dumbbell Pullover",
+    "primaryMuscle": "Borst/Rug",
+    "equipment": "Dumbbell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Latissimus dorsi",
+      "Pectoralis major",
+      "Triceps lange kop",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Voer Dumbbell Pullover gecontroleerd uit met focus op borst/rug. Gebruik een stabiele houding, volledige bewegingsuitslag en vermijd onnodig momentum."
+  },
+  {
+    "id": 124,
+    "name": "Cable Pullover",
+    "primaryMuscle": "Rug",
+    "equipment": "Kabel",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Latissimus dorsi",
+      "Pectoralis major",
+      "Triceps lange kop",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Voer Cable Pullover gecontroleerd uit met focus op rug. Gebruik een stabiele houding, volledige bewegingsuitslag en vermijd onnodig momentum."
+  },
+  {
+    "id": 125,
+    "name": "Reverse Fly",
+    "primaryMuscle": "Achterste schouder",
+    "equipment": "Dumbbells",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Rhomboids",
+      "Trapezius",
+      "Rotator cuff",
+      "Bovenrug"
+    ],
+    "description": "Beweeg de armen naar buiten en achteren terwijl de schouderbladen gecontroleerd bewegen. Richt zich op achterste schouders en spieren van de bovenrug."
+  },
+  {
+    "id": 126,
+    "name": "Reverse Pec Deck",
+    "primaryMuscle": "Achterste schouder",
+    "equipment": "Machine",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Rhomboids",
+      "Trapezius",
+      "Rotator cuff",
+      "Bovenrug"
+    ],
+    "description": "Beweeg de armen naar buiten en achteren terwijl de schouderbladen gecontroleerd bewegen. Richt zich op achterste schouders en spieren van de bovenrug."
+  },
+  {
+    "id": 127,
+    "name": "Cable Rear Delt Fly",
+    "primaryMuscle": "Achterste schouder",
+    "equipment": "Kabel",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Rhomboids",
+      "Trapezius",
+      "Rotator cuff",
+      "Bovenrug"
+    ],
+    "description": "Beweeg de armen naar buiten en achteren terwijl de schouderbladen gecontroleerd bewegen. Richt zich op achterste schouders en spieren van de bovenrug."
+  },
+  {
+    "id": 128,
+    "name": "Front Plate Raise",
+    "primaryMuscle": "Schouders",
+    "equipment": "Plate",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Pectoralis major (bovenkant)",
+      "Middelste schouderkop",
+      "Trapezius",
+      "Serratus anterior"
+    ],
+    "description": "Hef de weerstand voor het lichaam tot ongeveer schouderhoogte. Houd de romp stil en laat de voorste schouderkop gecontroleerd het werk doen."
+  },
+  {
+    "id": 129,
+    "name": "Arnold Press (Seated)",
+    "primaryMuscle": "Schouders",
+    "equipment": "Dumbbells",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Middelste schouderkop",
+      "Trapezius",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Duw de weerstand boven het hoofd terwijl je romp stabiel blijft. Train vooral de schouders en triceps, met ondersteuning van trapezius en core."
+  },
+  {
+    "id": 130,
+    "name": "Landmine Press",
+    "primaryMuscle": "Schouders/Borst",
+    "equipment": "Barbell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Middelste schouderkop",
+      "Trapezius",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Duw de weerstand boven het hoofd terwijl je romp stabiel blijft. Train vooral de schouders en triceps, met ondersteuning van trapezius en core."
+  },
+  {
+    "id": 131,
+    "name": "Push Press",
+    "primaryMuscle": "Schouders",
+    "equipment": "Barbell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Middelste schouderkop",
+      "Trapezius",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Duw de weerstand boven het hoofd terwijl je romp stabiel blijft. Train vooral de schouders en triceps, met ondersteuning van trapezius en core."
+  },
+  {
+    "id": 132,
+    "name": "Dumbbell Push Press",
+    "primaryMuscle": "Schouders",
+    "equipment": "Dumbbells",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Middelste schouderkop",
+      "Trapezius",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Duw de weerstand boven het hoofd terwijl je romp stabiel blijft. Train vooral de schouders en triceps, met ondersteuning van trapezius en core."
+  },
+  {
+    "id": 133,
+    "name": "Cable Front Raise",
+    "primaryMuscle": "Schouders",
+    "equipment": "Kabel",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Pectoralis major (bovenkant)",
+      "Middelste schouderkop",
+      "Trapezius",
+      "Serratus anterior"
+    ],
+    "description": "Hef de weerstand voor het lichaam tot ongeveer schouderhoogte. Houd de romp stil en laat de voorste schouderkop gecontroleerd het werk doen."
+  },
+  {
+    "id": 134,
+    "name": "Machine Lateral Raise",
+    "primaryMuscle": "Schouders",
+    "equipment": "Machine",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Supraspinatus",
+      "Voorste schouderkop",
+      "Trapezius",
+      "Serratus anterior"
+    ],
+    "description": "Hef de armen zijwaarts tot ongeveer schouderhoogte met licht gebogen ellebogen. Gebruik weinig momentum en houd spanning op de middelste schouderkop."
+  },
+  {
+    "id": 135,
+    "name": "Cable Upright Row",
+    "primaryMuscle": "Schouders",
+    "equipment": "Kabel",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Biceps",
+      "Rhomboids",
+      "Trapezius",
+      "Achterste schouderkop",
+      "Onderarmen/Grip",
+      "Core"
+    ],
+    "description": "Trek de weerstand richting je romp en beweeg de schouderbladen naar achteren. Houd de borst stabiel en voorkom dat momentum het werk overneemt."
+  },
+  {
+    "id": 136,
+    "name": "EZ Bar Curl",
+    "primaryMuscle": "Biceps",
+    "equipment": "EZ-bar",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Brachialis",
+      "Brachioradialis",
+      "Onderarmen"
+    ],
+    "description": "Buig de ellebogen tegen weerstand en houd de bovenarmen zo stil mogelijk. Laat het gewicht gecontroleerd zakken voor constante spanning op arm en onderarm."
+  },
+  {
+    "id": 137,
+    "name": "Spider Curl",
+    "primaryMuscle": "Biceps",
+    "equipment": "Barbell/Dumbbells",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Brachialis",
+      "Brachioradialis",
+      "Onderarmen"
+    ],
+    "description": "Buig de ellebogen tegen weerstand en houd de bovenarmen zo stil mogelijk. Laat het gewicht gecontroleerd zakken voor constante spanning op arm en onderarm."
+  },
+  {
+    "id": 138,
+    "name": "Bayesian Curl",
+    "primaryMuscle": "Biceps",
+    "equipment": "Kabel",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Brachialis",
+      "Brachioradialis",
+      "Onderarmen"
+    ],
+    "description": "Buig de ellebogen tegen weerstand en houd de bovenarmen zo stil mogelijk. Laat het gewicht gecontroleerd zakken voor constante spanning op arm en onderarm."
+  },
+  {
+    "id": 139,
+    "name": "Drag Curl",
+    "primaryMuscle": "Biceps",
+    "equipment": "Barbell",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Brachialis",
+      "Brachioradialis",
+      "Onderarmen"
+    ],
+    "description": "Buig de ellebogen tegen weerstand en houd de bovenarmen zo stil mogelijk. Laat het gewicht gecontroleerd zakken voor constante spanning op arm en onderarm."
+  },
+  {
+    "id": 140,
+    "name": "Zottman Curl",
+    "primaryMuscle": "Biceps",
+    "equipment": "Dumbbells",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Brachialis",
+      "Brachioradialis",
+      "Onderarmen",
+      "Gripspieren"
+    ],
+    "description": "Buig de ellebogen tegen weerstand en houd de bovenarmen zo stil mogelijk. Laat het gewicht gecontroleerd zakken voor constante spanning op arm en onderarm."
+  },
+  {
+    "id": 141,
+    "name": "Cross Body Hammer Curl",
+    "primaryMuscle": "Biceps",
+    "equipment": "Dumbbells",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Brachialis",
+      "Brachioradialis",
+      "Onderarmen"
+    ],
+    "description": "Buig de ellebogen tegen weerstand en houd de bovenarmen zo stil mogelijk. Laat het gewicht gecontroleerd zakken voor constante spanning op arm en onderarm."
+  },
+  {
+    "id": 142,
+    "name": "Cable Hammer Curl",
+    "primaryMuscle": "Biceps",
+    "equipment": "Kabel",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Brachialis",
+      "Brachioradialis",
+      "Onderarmen"
+    ],
+    "description": "Buig de ellebogen tegen weerstand en houd de bovenarmen zo stil mogelijk. Laat het gewicht gecontroleerd zakken voor constante spanning op arm en onderarm."
+  },
+  {
+    "id": 143,
+    "name": "Machine Bicep Curl",
+    "primaryMuscle": "Biceps",
+    "equipment": "Machine",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Brachialis",
+      "Brachioradialis",
+      "Onderarmen"
+    ],
+    "description": "Buig de ellebogen tegen weerstand en houd de bovenarmen zo stil mogelijk. Laat het gewicht gecontroleerd zakken voor constante spanning op arm en onderarm."
+  },
+  {
+    "id": 144,
+    "name": "Incline Dumbbell Curl",
+    "primaryMuscle": "Biceps",
+    "equipment": "Dumbbells",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Brachialis",
+      "Brachioradialis",
+      "Onderarmen"
+    ],
+    "description": "Buig de ellebogen tegen weerstand en houd de bovenarmen zo stil mogelijk. Laat het gewicht gecontroleerd zakken voor constante spanning op arm en onderarm."
+  },
+  {
+    "id": 145,
+    "name": "Reverse Grip Curl",
+    "primaryMuscle": "Biceps/Unterarm",
+    "equipment": "Barbell",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Brachialis",
+      "Brachioradialis",
+      "Onderarmen",
+      "Gripspieren"
+    ],
+    "description": "Buig de ellebogen tegen weerstand en houd de bovenarmen zo stil mogelijk. Laat het gewicht gecontroleerd zakken voor constante spanning op arm en onderarm."
+  },
+  {
+    "id": 146,
+    "name": "Wrist Curl",
+    "primaryMuscle": "Onderarmen",
+    "equipment": "Barbell/Dumbbell",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Polsflexoren/extensoren",
+      "Brachioradialis",
+      "Gripspieren"
+    ],
+    "description": "Buig de ellebogen tegen weerstand en houd de bovenarmen zo stil mogelijk. Laat het gewicht gecontroleerd zakken voor constante spanning op arm en onderarm."
+  },
+  {
+    "id": 147,
+    "name": "Reverse Wrist Curl",
+    "primaryMuscle": "Onderarmen",
+    "equipment": "Barbell/Dumbbell",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Polsflexoren/extensoren",
+      "Brachioradialis",
+      "Gripspieren"
+    ],
+    "description": "Buig de ellebogen tegen weerstand en houd de bovenarmen zo stil mogelijk. Laat het gewicht gecontroleerd zakken voor constante spanning op arm en onderarm."
+  },
+  {
+    "id": 148,
+    "name": "Farmer Hold",
+    "primaryMuscle": "Onderarmen/Grip",
+    "equipment": "Dumbbells",
+    "type": "Isometrisch",
+    "secondaryMuscles": [
+      "Brachioradialis",
+      "Vingerflexoren",
+      "Polsstabilisatoren",
+      "Trapezius"
+    ],
+    "description": "Train onderarmen en grip door de pols gecontroleerd te bewegen of een zware belasting stevig vast te houden zonder houding te verliezen."
+  },
+  {
+    "id": 149,
+    "name": "Triceps Rope Pushdown",
+    "primaryMuscle": "Triceps",
+    "equipment": "Kabel",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Voorste schouderkop",
+      "Borst",
+      "Anconeus",
+      "Core"
+    ],
+    "description": "Strek de ellebogen tegen weerstand en houd de bovenarmen gecontroleerd. Richt zich op de triceps, met extra stabilisatie vanuit schouders en romp."
+  },
+  {
+    "id": 150,
+    "name": "Triceps Bar Pushdown",
+    "primaryMuscle": "Triceps",
+    "equipment": "Kabel",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Voorste schouderkop",
+      "Borst",
+      "Anconeus",
+      "Core"
+    ],
+    "description": "Strek de ellebogen tegen weerstand en houd de bovenarmen gecontroleerd. Richt zich op de triceps, met extra stabilisatie vanuit schouders en romp."
+  },
+  {
+    "id": 151,
+    "name": "Single Arm Triceps Pushdown",
+    "primaryMuscle": "Triceps",
+    "equipment": "Kabel",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Voorste schouderkop",
+      "Borst",
+      "Anconeus",
+      "Core"
+    ],
+    "description": "Strek de ellebogen tegen weerstand en houd de bovenarmen gecontroleerd. Richt zich op de triceps, met extra stabilisatie vanuit schouders en romp."
+  },
+  {
+    "id": 152,
+    "name": "Overhead Cable Triceps Extension",
+    "primaryMuscle": "Triceps",
+    "equipment": "Kabel",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Voorste schouderkop",
+      "Borst",
+      "Anconeus",
+      "Core"
+    ],
+    "description": "Strek de ellebogen tegen weerstand en houd de bovenarmen gecontroleerd. Richt zich op de triceps, met extra stabilisatie vanuit schouders en romp."
+  },
+  {
+    "id": 153,
+    "name": "Dumbbell Skullcrusher",
+    "primaryMuscle": "Triceps",
+    "equipment": "Dumbbells",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Voorste schouderkop",
+      "Borst",
+      "Anconeus",
+      "Core"
+    ],
+    "description": "Strek de ellebogen tegen weerstand en houd de bovenarmen gecontroleerd. Richt zich op de triceps, met extra stabilisatie vanuit schouders en romp."
+  },
+  {
+    "id": 154,
+    "name": "EZ Bar Skullcrusher",
+    "primaryMuscle": "Triceps",
+    "equipment": "EZ-bar",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Voorste schouderkop",
+      "Borst",
+      "Anconeus",
+      "Core"
+    ],
+    "description": "Strek de ellebogen tegen weerstand en houd de bovenarmen gecontroleerd. Richt zich op de triceps, met extra stabilisatie vanuit schouders en romp."
+  },
+  {
+    "id": 155,
+    "name": "JM Press",
+    "primaryMuscle": "Triceps",
+    "equipment": "Barbell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Duw het gewicht gecontroleerd van je af en houd schouderbladen stabiel. Train vooral borst en triceps, met ondersteuning van de voorste schouders."
+  },
+  {
+    "id": 156,
+    "name": "Dumbbell Tate Press",
+    "primaryMuscle": "Triceps",
+    "equipment": "Dumbbells",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Duw het gewicht gecontroleerd van je af en houd schouderbladen stabiel. Train vooral borst en triceps, met ondersteuning van de voorste schouders."
+  },
+  {
+    "id": 157,
+    "name": "Machine Triceps Extension",
+    "primaryMuscle": "Triceps",
+    "equipment": "Machine",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Voorste schouderkop",
+      "Borst",
+      "Anconeus",
+      "Core"
+    ],
+    "description": "Strek de ellebogen tegen weerstand en houd de bovenarmen gecontroleerd. Richt zich op de triceps, met extra stabilisatie vanuit schouders en romp."
+  },
+  {
+    "id": 158,
+    "name": "Close Grip Push Up",
+    "primaryMuscle": "Triceps/Borst",
+    "equipment": "Lichaamsgewicht",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Duw het gewicht gecontroleerd van je af en houd schouderbladen stabiel. Train vooral borst en triceps, met ondersteuning van de voorste schouders."
+  },
+  {
+    "id": 159,
+    "name": "Diamond Push Up",
+    "primaryMuscle": "Triceps/Borst",
+    "equipment": "Lichaamsgewicht",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Duw het gewicht gecontroleerd van je af en houd schouderbladen stabiel. Train vooral borst en triceps, met ondersteuning van de voorste schouders."
+  },
+  {
+    "id": 160,
+    "name": "Cable Chest Press",
+    "primaryMuscle": "Borst",
+    "equipment": "Kabel",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Duw het gewicht gecontroleerd van je af en houd schouderbladen stabiel. Train vooral borst en triceps, met ondersteuning van de voorste schouders."
+  },
+  {
+    "id": 161,
+    "name": "Single Arm Cable Chest Press",
+    "primaryMuscle": "Borst",
+    "equipment": "Kabel",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Duw het gewicht gecontroleerd van je af en houd schouderbladen stabiel. Train vooral borst en triceps, met ondersteuning van de voorste schouders."
+  },
+  {
+    "id": 162,
+    "name": "Low Cable Crossover",
+    "primaryMuscle": "Borst",
+    "equipment": "Kabel",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Voorste schouderkop",
+      "Serratus anterior",
+      "Biceps (stabilisatie)"
+    ],
+    "description": "Breng de armen in een brede boog naar elkaar toe en houd de ellebogen licht gebogen. Focus op een gecontroleerde rek en contractie van de borst."
+  },
+  {
+    "id": 163,
+    "name": "High Cable Crossover",
+    "primaryMuscle": "Borst",
+    "equipment": "Kabel",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Voorste schouderkop",
+      "Serratus anterior",
+      "Biceps (stabilisatie)"
+    ],
+    "description": "Breng de armen in een brede boog naar elkaar toe en houd de ellebogen licht gebogen. Focus op een gecontroleerde rek en contractie van de borst."
+  },
+  {
+    "id": 164,
+    "name": "Pec Deck",
+    "primaryMuscle": "Borst",
+    "equipment": "Machine",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Voorste schouderkop",
+      "Serratus anterior",
+      "Biceps (stabilisatie)"
+    ],
+    "description": "Breng de armen in een brede boog naar elkaar toe en houd de ellebogen licht gebogen. Focus op een gecontroleerde rek en contractie van de borst."
+  },
+  {
+    "id": 165,
+    "name": "Incline Chest Fly",
+    "primaryMuscle": "Borst",
+    "equipment": "Dumbbells",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Voorste schouderkop",
+      "Serratus anterior",
+      "Biceps (stabilisatie)"
+    ],
+    "description": "Breng de armen in een brede boog naar elkaar toe en houd de ellebogen licht gebogen. Focus op een gecontroleerde rek en contractie van de borst."
+  },
+  {
+    "id": 166,
+    "name": "Decline Chest Fly",
+    "primaryMuscle": "Borst",
+    "equipment": "Dumbbells",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Voorste schouderkop",
+      "Serratus anterior",
+      "Biceps (stabilisatie)"
+    ],
+    "description": "Breng de armen in een brede boog naar elkaar toe en houd de ellebogen licht gebogen. Focus op een gecontroleerde rek en contractie van de borst."
+  },
+  {
+    "id": 167,
+    "name": "Machine Incline Press",
+    "primaryMuscle": "Borst",
+    "equipment": "Machine",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Serratus anterior"
+    ],
+    "description": "Voer Machine Incline Press gecontroleerd uit met focus op borst. Gebruik een stabiele houding, volledige bewegingsuitslag en vermijd onnodig momentum."
+  },
+  {
+    "id": 168,
+    "name": "Machine Decline Press",
+    "primaryMuscle": "Borst",
+    "equipment": "Machine",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Serratus anterior"
+    ],
+    "description": "Voer Machine Decline Press gecontroleerd uit met focus op borst. Gebruik een stabiele houding, volledige bewegingsuitslag en vermijd onnodig momentum."
+  },
+  {
+    "id": 169,
+    "name": "Push Up (Weighted)",
+    "primaryMuscle": "Borst/Triceps",
+    "equipment": "Gewicht",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Duw het gewicht gecontroleerd van je af en houd schouderbladen stabiel. Train vooral borst en triceps, met ondersteuning van de voorste schouders."
+  },
+  {
+    "id": 170,
+    "name": "Chest Press (Plate Loaded)",
+    "primaryMuscle": "Borst",
+    "equipment": "Machine",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Duw het gewicht gecontroleerd van je af en houd schouderbladen stabiel. Train vooral borst en triceps, met ondersteuning van de voorste schouders."
+  },
+  {
+    "id": 171,
+    "name": "Cable Crunch (Kneeling)",
+    "primaryMuscle": "Core",
+    "equipment": "Kabel",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Transversus abdominis",
+      "Obliques",
+      "Heupflexoren"
+    ],
+    "description": "Buig de romp gecontroleerd en span de buikspieren aan zonder aan nek of hoofd te trekken. Houd de terugweg rustig voor constante spanning op de core."
+  },
+  {
+    "id": 172,
+    "name": "Reverse Crunch",
+    "primaryMuscle": "Core",
+    "equipment": "Lichaamsgewicht",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Transversus abdominis",
+      "Obliques",
+      "Heupflexoren"
+    ],
+    "description": "Buig de romp gecontroleerd en span de buikspieren aan zonder aan nek of hoofd te trekken. Houd de terugweg rustig voor constante spanning op de core."
+  },
+  {
+    "id": 173,
+    "name": "Bicycle Crunch",
+    "primaryMuscle": "Core",
+    "equipment": "Lichaamsgewicht",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Transversus abdominis",
+      "Obliques",
+      "Heupflexoren"
+    ],
+    "description": "Buig de romp gecontroleerd en span de buikspieren aan zonder aan nek of hoofd te trekken. Houd de terugweg rustig voor constante spanning op de core."
+  },
+  {
+    "id": 174,
+    "name": "Russian Twist",
+    "primaryMuscle": "Core",
+    "equipment": "Lichaamsgewicht/Gewicht",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Obliques",
+      "Transversus abdominis",
+      "Rectus abdominis",
+      "Erector spinae"
+    ],
+    "description": "Train de core tegen of met rotatie en zijwaartse krachten. Beweeg gecontroleerd vanuit de romp en houd heupen en bekken zo stabiel mogelijk."
+  },
+  {
+    "id": 175,
+    "name": "Decline Crunch",
+    "primaryMuscle": "Core",
+    "equipment": "Bank",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Transversus abdominis",
+      "Obliques",
+      "Heupflexoren"
+    ],
+    "description": "Buig de romp gecontroleerd en span de buikspieren aan zonder aan nek of hoofd te trekken. Houd de terugweg rustig voor constante spanning op de core."
+  },
+  {
+    "id": 176,
+    "name": "Sit Up",
+    "primaryMuscle": "Core",
+    "equipment": "Lichaamsgewicht",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Transversus abdominis",
+      "Obliques",
+      "Heupflexoren"
+    ],
+    "description": "Buig de romp gecontroleerd en span de buikspieren aan zonder aan nek of hoofd te trekken. Houd de terugweg rustig voor constante spanning op de core."
+  },
+  {
+    "id": 177,
+    "name": "Hanging Knee Raise",
+    "primaryMuscle": "Core",
+    "equipment": "Lichaamsgewicht",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Transversus abdominis",
+      "Obliques",
+      "Heupflexoren"
+    ],
+    "description": "Breng benen of knieën gecontroleerd omhoog vanuit de core. Beperk zwaaien en kantel het bekken actief om de buikspieren effectief te belasten."
+  },
+  {
+    "id": 178,
+    "name": "Captain's Chair Leg Raise",
+    "primaryMuscle": "Core",
+    "equipment": "Machine",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Transversus abdominis",
+      "Obliques",
+      "Heupflexoren"
+    ],
+    "description": "Breng benen of knieën gecontroleerd omhoog vanuit de core. Beperk zwaaien en kantel het bekken actief om de buikspieren effectief te belasten."
+  },
+  {
+    "id": 179,
+    "name": "Toes to Bar",
+    "primaryMuscle": "Core",
+    "equipment": "Lichaamsgewicht",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Transversus abdominis",
+      "Obliques",
+      "Heupflexoren"
+    ],
+    "description": "Breng benen of knieën gecontroleerd omhoog vanuit de core. Beperk zwaaien en kantel het bekken actief om de buikspieren effectief te belasten."
+  },
+  {
+    "id": 180,
+    "name": "Ab Crunch Machine",
+    "primaryMuscle": "Core",
+    "equipment": "Machine",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Transversus abdominis",
+      "Obliques",
+      "Heupflexoren"
+    ],
+    "description": "Buig de romp gecontroleerd en span de buikspieren aan zonder aan nek of hoofd te trekken. Houd de terugweg rustig voor constante spanning op de core."
+  },
+  {
+    "id": 181,
+    "name": "Pallof Press",
+    "primaryMuscle": "Core",
+    "equipment": "Kabel",
+    "type": "Isometrisch",
+    "secondaryMuscles": [
+      "Obliques",
+      "Transversus abdominis",
+      "Glutes",
+      "Schouders"
+    ],
+    "description": "Train de core tegen of met rotatie en zijwaartse krachten. Beweeg gecontroleerd vanuit de romp en houd heupen en bekken zo stabiel mogelijk."
+  },
+  {
+    "id": 182,
+    "name": "Cable Woodchop",
+    "primaryMuscle": "Core",
+    "equipment": "Kabel",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Obliques",
+      "Transversus abdominis",
+      "Rectus abdominis",
+      "Erector spinae"
+    ],
+    "description": "Train de core tegen of met rotatie en zijwaartse krachten. Beweeg gecontroleerd vanuit de romp en houd heupen en bekken zo stabiel mogelijk."
+  },
+  {
+    "id": 183,
+    "name": "Cable Side Bend",
+    "primaryMuscle": "Core",
+    "equipment": "Kabel",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Obliques",
+      "Transversus abdominis",
+      "Rectus abdominis",
+      "Erector spinae"
+    ],
+    "description": "Train de core tegen of met rotatie en zijwaartse krachten. Beweeg gecontroleerd vanuit de romp en houd heupen en bekken zo stabiel mogelijk."
+  },
+  {
+    "id": 184,
+    "name": "Back Extension (Weighted)",
+    "primaryMuscle": "Onderrug/Glutes",
+    "equipment": "Gewicht",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Gluteus maximus",
+      "Hamstrings",
+      "Erector spinae",
+      "Core"
+    ],
+    "description": "Strek de heupen en romp gecontroleerd tot een neutrale positie. Train onderrug, bilspieren en hamstrings zonder de onderrug overdreven te overstrekken."
+  },
+  {
+    "id": 185,
+    "name": "Bird Dog",
+    "primaryMuscle": "Core",
+    "equipment": "Lichaamsgewicht",
+    "type": "Isometrisch",
+    "secondaryMuscles": [
+      "Transversus abdominis",
+      "Obliques",
+      "Erector spinae",
+      "Glutes"
+    ],
+    "description": "Beweeg armen en benen terwijl je romp stabiel blijft. Focus op ademhaling en bekkencontrole voor diepe coreactivatie en betere rompstabiliteit."
+  },
+  {
+    "id": 186,
+    "name": "Dead Bug",
+    "primaryMuscle": "Core",
+    "equipment": "Lichaamsgewicht",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Transversus abdominis",
+      "Obliques",
+      "Erector spinae",
+      "Glutes"
+    ],
+    "description": "Beweeg armen en benen terwijl je romp stabiel blijft. Focus op ademhaling en bekkencontrole voor diepe coreactivatie en betere rompstabiliteit."
+  },
+  {
+    "id": 187,
+    "name": "Mountain Climbers",
+    "primaryMuscle": "Core/Cardio",
+    "equipment": "Lichaamsgewicht",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Core",
+      "Schouders",
+      "Quadriceps",
+      "Glutes",
+      "Hamstrings",
+      "Kuiten"
+    ],
+    "description": "Een dynamische full-body oefening die kracht en conditie combineert. Houd de techniek strak terwijl benen, core en bovenlichaam samenwerken."
+  },
+  {
+    "id": 188,
+    "name": "Burpee",
+    "primaryMuscle": "Full body",
+    "equipment": "Lichaamsgewicht",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Core",
+      "Schouders",
+      "Quadriceps",
+      "Glutes",
+      "Hamstrings",
+      "Kuiten"
+    ],
+    "description": "Een dynamische full-body oefening die kracht en conditie combineert. Houd de techniek strak terwijl benen, core en bovenlichaam samenwerken."
+  },
+  {
+    "id": 189,
+    "name": "Kettlebell Goblet Squat",
+    "primaryMuscle": "Benen",
+    "equipment": "Kettlebell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Gluteus maximus",
+      "Adductoren",
+      "Kuiten",
+      "Core"
+    ],
+    "description": "Train vooral benen door gecontroleerd te buigen en krachtig te strekken. Houd je romp stabiel en laat knieën in lijn met de voeten bewegen."
+  },
+  {
+    "id": 190,
+    "name": "Kettlebell Deadlift",
+    "primaryMuscle": "Benen/Rug",
+    "equipment": "Kettlebell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Erector spinae",
+      "Gluteus maximus",
+      "Hamstrings",
+      "Adductoren",
+      "Core",
+      "Onderarmen/Grip",
+      "Latissimus dorsi"
+    ],
+    "description": "Een heupdominante beweging voor de achterste keten. Beweeg vanuit de heupen, houd de rug neutraal en strek krachtig door met billen en hamstrings."
+  },
+  {
+    "id": 191,
+    "name": "Kettlebell Clean",
+    "primaryMuscle": "Full body",
+    "equipment": "Kettlebell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Glutes",
+      "Hamstrings",
+      "Quadriceps",
+      "Schouders",
+      "Trapezius",
+      "Core",
+      "Onderarmen/Grip"
+    ],
+    "description": "Explosieve kettlebellbeweging vanuit heupen en benen naar de bovenpositie. Combineert kracht, coördinatie, grip en totale lichaamsstabiliteit."
+  },
+  {
+    "id": 192,
+    "name": "Kettlebell Snatch",
+    "primaryMuscle": "Full body",
+    "equipment": "Kettlebell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Glutes",
+      "Hamstrings",
+      "Quadriceps",
+      "Schouders",
+      "Trapezius",
+      "Core",
+      "Onderarmen/Grip"
+    ],
+    "description": "Explosieve kettlebellbeweging vanuit heupen en benen naar de bovenpositie. Combineert kracht, coördinatie, grip en totale lichaamsstabiliteit."
+  },
+  {
+    "id": 193,
+    "name": "Kettlebell Turkish Get Up",
+    "primaryMuscle": "Full body/Core",
+    "equipment": "Kettlebell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Schouders",
+      "Rotator cuff",
+      "Obliques",
+      "Glutes",
+      "Quadriceps",
+      "Hamstrings"
+    ],
+    "description": "Sta stapsgewijs op terwijl je de kettlebell stabiel boven je houdt. Een technische full-body oefening voor schoudercontrole, core en mobiliteit."
+  },
+  {
+    "id": 194,
+    "name": "Kettlebell Lunges",
+    "primaryMuscle": "Benen/Glutes",
+    "equipment": "Kettlebell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Gluteus maximus",
+      "Adductoren",
+      "Kuiten",
+      "Core"
+    ],
+    "description": "Train vooral benen/glutes door gecontroleerd te buigen en krachtig te strekken. Houd je romp stabiel en laat knieën in lijn met de voeten bewegen."
+  },
+  {
+    "id": 195,
+    "name": "Kettlebell Press",
+    "primaryMuscle": "Schouders",
+    "equipment": "Kettlebell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Middelste schouderkop",
+      "Trapezius",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Duw de weerstand boven het hoofd terwijl je romp stabiel blijft. Train vooral de schouders en triceps, met ondersteuning van trapezius en core."
+  },
+  {
+    "id": 196,
+    "name": "Battle Ropes",
+    "primaryMuscle": "Full body/Cardio",
+    "equipment": "Touwen",
+    "type": "Cardio",
+    "secondaryMuscles": [
+      "Core",
+      "Schouders",
+      "Quadriceps",
+      "Glutes",
+      "Hamstrings",
+      "Kuiten"
+    ],
+    "description": "Een dynamische full-body oefening die kracht en conditie combineert. Houd de techniek strak terwijl benen, core en bovenlichaam samenwerken."
+  },
+  {
+    "id": 197,
+    "name": "Ball Slam",
+    "primaryMuscle": "Full body",
+    "equipment": "Medicine ball",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Core",
+      "Schouders",
+      "Quadriceps",
+      "Glutes",
+      "Hamstrings",
+      "Kuiten"
+    ],
+    "description": "Een dynamische full-body oefening die kracht en conditie combineert. Houd de techniek strak terwijl benen, core en bovenlichaam samenwerken."
+  },
+  {
+    "id": 198,
+    "name": "Medicine Ball Chest Pass",
+    "primaryMuscle": "Borst/Triceps",
+    "equipment": "Medicine ball",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Triceps",
+      "Voorste schouderkop",
+      "Serratus anterior",
+      "Core"
+    ],
+    "description": "Voer Medicine Ball Chest Pass gecontroleerd uit met focus op borst/triceps. Gebruik een stabiele houding, volledige bewegingsuitslag en vermijd onnodig momentum."
+  },
+  {
+    "id": 199,
+    "name": "Box Jump",
+    "primaryMuscle": "Benen",
+    "equipment": "Box",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Gluteus maximus",
+      "Hamstrings",
+      "Kuiten",
+      "Core"
+    ],
+    "description": "Explosieve beenoefening waarbij je krachtig vanuit heupen, knieën en enkels strekt. Land zacht en stabiel om controle en vermogen te trainen."
+  },
+  {
+    "id": 200,
+    "name": "Jump Squat",
+    "primaryMuscle": "Benen",
+    "equipment": "Lichaamsgewicht",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Gluteus maximus",
+      "Adductoren",
+      "Kuiten",
+      "Core"
+    ],
+    "description": "Train vooral benen door gecontroleerd te buigen en krachtig te strekken. Houd je romp stabiel en laat knieën in lijn met de voeten bewegen."
+  },
+  {
+    "id": 201,
+    "name": "Bulgarian Split Squat (Smith)",
+    "primaryMuscle": "Benen/Glutes",
+    "equipment": "Smith machine",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Gluteus maximus",
+      "Adductoren",
+      "Kuiten",
+      "Core"
+    ],
+    "description": "Train vooral benen/glutes door gecontroleerd te buigen en krachtig te strekken. Houd je romp stabiel en laat knieën in lijn met de voeten bewegen."
+  },
+  {
+    "id": 202,
+    "name": "Barbell Hip Thrust",
+    "primaryMuscle": "Glutes",
+    "equipment": "Barbell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Adductoren",
+      "Gluteus medius",
+      "Core"
+    ],
+    "description": "Strek de heupen krachtig en span de bilspieren bovenin aan. Houd ribben en bekken gecontroleerd voor maximale spanning op de glutes."
+  },
+  {
+    "id": 203,
+    "name": "Machine Hip Thrust",
+    "primaryMuscle": "Glutes",
+    "equipment": "Machine",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Adductoren",
+      "Gluteus medius",
+      "Core"
+    ],
+    "description": "Strek de heupen krachtig en span de bilspieren bovenin aan. Houd ribben en bekken gecontroleerd voor maximale spanning op de glutes."
+  },
+  {
+    "id": 204,
+    "name": "Cable Glute Kickback",
+    "primaryMuscle": "Glutes",
+    "equipment": "Kabel",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Gluteus medius",
+      "Gluteus minimus",
+      "Hamstrings",
+      "Core"
+    ],
+    "description": "Voer Cable Glute Kickback gecontroleerd uit met focus op glutes. Gebruik een stabiele houding, volledige bewegingsuitslag en vermijd onnodig momentum."
+  },
+  {
+    "id": 205,
+    "name": "Donkey Calf Raise",
+    "primaryMuscle": "Kuiten",
+    "equipment": "Machine/Gewicht",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Soleus",
+      "Gastrocnemius",
+      "Tibialis posterior",
+      "Voet- en enkelstabilisatoren"
+    ],
+    "description": "Strek de enkels volledig en kom hoog op de voorvoet. Laat de hielen gecontroleerd zakken voor een grote bewegingsuitslag en sterke kuitcontractie."
+  },
+  {
+    "id": 206,
+    "name": "Single Leg Calf Raise",
+    "primaryMuscle": "Kuiten",
+    "equipment": "Lichaamsgewicht",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Soleus",
+      "Gastrocnemius",
+      "Tibialis posterior",
+      "Voet- en enkelstabilisatoren"
+    ],
+    "description": "Strek de enkels volledig en kom hoog op de voorvoet. Laat de hielen gecontroleerd zakken voor een grote bewegingsuitslag en sterke kuitcontractie."
+  },
+  {
+    "id": 207,
+    "name": "Seated Calf Raise (Plate Loaded)",
+    "primaryMuscle": "Kuiten",
+    "equipment": "Machine",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Soleus",
+      "Gastrocnemius",
+      "Tibialis posterior",
+      "Voet- en enkelstabilisatoren"
+    ],
+    "description": "Strek de enkels volledig en kom hoog op de voorvoet. Laat de hielen gecontroleerd zakken voor een grote bewegingsuitslag en sterke kuitcontractie."
+  },
+  {
+    "id": 208,
+    "name": "Standing Calf Raise (Barbell)",
+    "primaryMuscle": "Kuiten",
+    "equipment": "Barbell",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Soleus",
+      "Gastrocnemius",
+      "Tibialis posterior",
+      "Voet- en enkelstabilisatoren"
+    ],
+    "description": "Strek de enkels volledig en kom hoog op de voorvoet. Laat de hielen gecontroleerd zakken voor een grote bewegingsuitslag en sterke kuitcontractie."
+  },
+  {
+    "id": 209,
+    "name": "Tibialis Raise",
+    "primaryMuscle": "Scheenbeen",
+    "equipment": "Lichaamsgewicht/Machine",
+    "type": "Isolation",
+    "secondaryMuscles": [
+      "Enkelstabilisatoren",
+      "Kuiten"
+    ],
+    "description": "Trek de tenen richting de schenen terwijl de hielen op de grond blijven. Versterkt de tibialis anterior en ondersteunt controle van enkel en onderbeen."
+  },
+  {
+    "id": 210,
+    "name": "Sled Push",
+    "primaryMuscle": "Benen/Full body",
+    "equipment": "Sled",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Core",
+      "Schouders",
+      "Quadriceps",
+      "Glutes",
+      "Hamstrings",
+      "Kuiten"
+    ],
+    "description": "Een dynamische full-body oefening die kracht en conditie combineert. Houd de techniek strak terwijl benen, core en bovenlichaam samenwerken."
+  },
+  {
+    "id": 211,
+    "name": "Sled Pull",
+    "primaryMuscle": "Benen/Rug",
+    "equipment": "Sled",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Core",
+      "Schouders",
+      "Quadriceps",
+      "Glutes",
+      "Hamstrings",
+      "Kuiten"
+    ],
+    "description": "Een dynamische full-body oefening die kracht en conditie combineert. Houd de techniek strak terwijl benen, core en bovenlichaam samenwerken."
+  },
+  {
+    "id": 212,
+    "name": "Walking Farmer's Carry",
+    "primaryMuscle": "Full body/Grip",
+    "equipment": "Dumbbells",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Onderarmen/Grip",
+      "Trapezius",
+      "Core",
+      "Obliques",
+      "Schouders",
+      "Glutes",
+      "Kuiten"
+    ],
+    "description": "Draag of houd een zware belasting met een lange, stabiele houding. Train grip, core, trapezius en totale lichaamsstabiliteit tijdens het lopen."
+  },
+  {
+    "id": 213,
+    "name": "Suitcase Carry",
+    "primaryMuscle": "Core/Grip",
+    "equipment": "Dumbbell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Onderarmen/Grip",
+      "Trapezius",
+      "Core",
+      "Obliques",
+      "Schouders",
+      "Glutes",
+      "Kuiten"
+    ],
+    "description": "Draag of houd een zware belasting met een lange, stabiele houding. Train grip, core, trapezius en totale lichaamsstabiliteit tijdens het lopen."
+  },
+  {
+    "id": 214,
+    "name": "Barbell Walking Lunge",
+    "primaryMuscle": "Benen/Glutes",
+    "equipment": "Barbell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Gluteus maximus",
+      "Adductoren",
+      "Kuiten",
+      "Core"
+    ],
+    "description": "Train vooral benen/glutes door gecontroleerd te buigen en krachtig te strekken. Houd je romp stabiel en laat knieën in lijn met de voeten bewegen."
+  },
+  {
+    "id": 215,
+    "name": "Reverse Hack Squat",
+    "primaryMuscle": "Quadriceps/Glutes",
+    "equipment": "Machine",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Gluteus maximus",
+      "Adductoren",
+      "Kuiten",
+      "Core"
+    ],
+    "description": "Train vooral quadriceps/glutes door gecontroleerd te buigen en krachtig te strekken. Houd je romp stabiel en laat knieën in lijn met de voeten bewegen."
+  },
+  {
+    "id": 216,
+    "name": "Zercher Squat",
+    "primaryMuscle": "Benen/Core",
+    "equipment": "Barbell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Gluteus maximus",
+      "Adductoren",
+      "Kuiten",
+      "Core",
+      "Biceps",
+      "Bovenrug"
+    ],
+    "description": "Train vooral benen/core door gecontroleerd te buigen en krachtig te strekken. Houd je romp stabiel en laat knieën in lijn met de voeten bewegen."
+  },
+  {
+    "id": 217,
+    "name": "Overhead Squat",
+    "primaryMuscle": "Benen/Schouders/Core",
+    "equipment": "Barbell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Gluteus maximus",
+      "Adductoren",
+      "Kuiten",
+      "Core",
+      "Schouders",
+      "Trapezius",
+      "Bovenrug"
+    ],
+    "description": "Train vooral benen/schouders/core door gecontroleerd te buigen en krachtig te strekken. Houd je romp stabiel en laat knieën in lijn met de voeten bewegen."
+  },
+  {
+    "id": 218,
+    "name": "Pause Squat",
+    "primaryMuscle": "Benen/Glutes",
+    "equipment": "Barbell",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Gluteus maximus",
+      "Adductoren",
+      "Kuiten",
+      "Core"
+    ],
+    "description": "Train vooral benen/glutes door gecontroleerd te buigen en krachtig te strekken. Houd je romp stabiel en laat knieën in lijn met de voeten bewegen."
+  },
+  {
+    "id": 219,
+    "name": "Front Foot Elevated Split Squat",
+    "primaryMuscle": "Benen/Glutes",
+    "equipment": "Dumbbells",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Gluteus maximus",
+      "Adductoren",
+      "Kuiten",
+      "Core"
+    ],
+    "description": "Train vooral benen/glutes door gecontroleerd te buigen en krachtig te strekken. Houd je romp stabiel en laat knieën in lijn met de voeten bewegen."
+  },
+  {
+    "id": 220,
+    "name": "Step Up (Weighted)",
+    "primaryMuscle": "Benen/Glutes",
+    "equipment": "Dumbbells",
+    "type": "Compound",
+    "secondaryMuscles": [
+      "Hamstrings",
+      "Gluteus maximus",
+      "Adductoren",
+      "Kuiten",
+      "Core"
+    ],
+    "description": "Train vooral benen/glutes door gecontroleerd te buigen en krachtig te strekken. Houd je romp stabiel en laat knieën in lijn met de voeten bewegen."
+  }
+]

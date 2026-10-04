@@ -17,9 +17,6 @@ export function WorkoutHistoryPage() {
       <div className="rounded-[28px] border border-slate-800 bg-slate-900/80 p-8 text-center shadow-soft">
         <p className="text-xl font-semibold text-white">Nog geen workouts</p>
         <p className="mt-2 text-sm text-slate-400">Start je eerste workout om je progressie hier te zien.</p>
-        <Link to="/workout" className="mt-5 inline-flex rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 px-4 py-2 text-sm font-semibold text-slate-950">
-          Workout starten
-        </Link>
       </div>
     )
   }

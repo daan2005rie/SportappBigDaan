@@ -1,5 +1,5 @@
 import { ArrowUpRight, Dumbbell, Sparkles } from 'lucide-react'
-import { NavLink, Route, Routes, useLocation } from 'react-router-dom'
+import { Link, NavLink, Route, Routes, useLocation } from 'react-router-dom'
 
 import { navigationItems } from '../data/dashboard'
 import { HomePage } from '../pages/HomePage'
@@ -68,13 +68,15 @@ export function AppShell() {
                 <h2 className="mt-1 text-2xl font-semibold text-white">{currentPage.label}</h2>
               </div>
 
-              <button
-                type="button"
-                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:brightness-110"
-              >
-                Workout starten
-                <ArrowUpRight className="h-4 w-4" />
-              </button>
+              {location.pathname === '/' ? (
+                <Link
+                  to="/workout"
+                  className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:brightness-110"
+                >
+                  Workout starten
+                  <ArrowUpRight className="h-4 w-4" />
+                </Link>
+              ) : null}
             </header>
 
             <Routes>

@@ -43,7 +43,10 @@ export interface Exercise {
   name: string
   muscleGroup: string
   secondaryMuscleGroup?: string
+  secondaryMuscles?: string[]
   type: string
+  movementType?: string
+  description?: string
 }
 
 export interface ExerciseOption {
@@ -71,6 +74,28 @@ export interface WorkoutExerciseItem {
   personalRecord?: string
 }
 
+export interface PresetExercise {
+  exerciseId: string
+  order: number
+  defaultSets: number
+}
+
+export interface WorkoutPreset {
+  id: string
+  userId: string
+  name: string
+  exercises: PresetExercise[]
+  createdAt: string
+  updatedAt: string
+}
+
+export interface WorkoutDraft {
+  name: string
+  startedAt: string
+  exercises: WorkoutExerciseItem[]
+  presetId?: string
+}
+
 export interface CompletedWorkoutSet {
   id: string
   setNumber: number
@@ -91,6 +116,7 @@ export interface CompletedWorkoutExercise {
 
 export interface CompletedWorkout {
   id: string
+  presetId?: string
   name: string
   startedAt: string
   completedAt: string

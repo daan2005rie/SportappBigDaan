@@ -4,11 +4,12 @@ import type {
   CompletedWorkoutSet,
   ExerciseProgressDatum,
   PersonalRecord,
+  WorkoutDraft,
   WorkoutExerciseItem,
 } from '../types'
 
 const COMPLETED_WORKOUTS_KEY = 'bigdaan.completed-workouts.v1'
-const DRAFT_WORKOUT_KEY = 'bigdaan.workout-draft.v1'
+const DRAFT_WORKOUT_KEY = 'bigdaan.workout-draft.v2'
 const PERSONAL_RECORDS_KEY = 'bigdaan.personal-records.v1'
 
 const createSeedWorkouts = (): CompletedWorkout[] => [
@@ -75,22 +76,20 @@ const createSeedWorkouts = (): CompletedWorkout[] => [
 
 export function loadCompletedWorkouts(): CompletedWorkout[] {
   if (typeof window === 'undefined') {
-    return createSeedWorkouts()
+    return []
   }
 
   try {
     const raw = window.localStorage.getItem(COMPLETED_WORKOUTS_KEY)
 
     if (!raw) {
-      const seed = createSeedWorkouts()
-      window.localStorage.setItem(COMPLETED_WORKOUTS_KEY, JSON.stringify(seed))
-      return seed
+      return []
     }
 
     const parsed = JSON.parse(raw) as CompletedWorkout[]
-    return Array.isArray(parsed) && parsed.length > 0 ? parsed : createSeedWorkouts()
+    return Array.isArray(parsed) ? parsed : []
   } catch {
-    return createSeedWorkouts()
+    return []
   }
 }
 
@@ -196,20 +195,52 @@ export function saveCompletedWorkout(workout: CompletedWorkout) {
   return applyPersonalRecords(workout)
 }
 
-export function loadWorkoutDraft(): WorkoutExerciseItem[] {
-  if (typeof window === 'undefined') return []
+export function loadWorkoutSessionDraft(): WorkoutDraft | null {
+  if (typeof window === 'undefined') return null
 
   try {
     const raw = window.localStorage.getItem(DRAFT_WORKOUT_KEY)
-    return raw ? (JSON.parse(raw) as WorkoutExerciseItem[]) : []
+    if (!raw) return null
+
+    const parsed = JSON.parse(raw) as WorkoutDraft | WorkoutExerciseItem[]
+    if (Array.isArray(parsed)) {
+      return parsed.length
+        ? { name: 'Workout', startedAt: new Date().toISOString(), exercises: parsed }
+        : null
+    }
+
+    return parsed && Array.isArray(parsed.exercises) ? parsed : null
   } catch {
-    return []
+    return null
   }
 }
 
-export function saveWorkoutDraft(exercises: WorkoutExerciseItem[]) {
+export function loadWorkoutDraft(): WorkoutExerciseItem[] {
+  return loadWorkoutSessionDraft()?.exercises ?? []
+}
+
+export function saveWorkoutSessionDraft(draft: WorkoutDraft | null) {
   if (typeof window === 'undefined') return
-  window.localStorage.setItem(DRAFT_WORKOUT_KEY, JSON.stringify(exercises))
+  if (!draft) {
+    window.localStorage.removeItem(DRAFT_WORKOUT_KEY)
+    return
+  }
+  window.localStorage.setItem(DRAFT_WORKOUT_KEY, JSON.stringify(draft))
+}
+
+export function saveWorkoutDraft(exercises: WorkoutExerciseItem[]) {
+  if (!exercises.length) {
+    saveWorkoutSessionDraft(null)
+    return
+  }
+
+  const currentDraft = loadWorkoutSessionDraft()
+  saveWorkoutSessionDraft({
+    name: currentDraft?.name ?? 'Workout',
+    startedAt: currentDraft?.startedAt ?? new Date().toISOString(),
+    ...(currentDraft?.presetId ? { presetId: currentDraft.presetId } : {}),
+    exercises,
+  })
 }
 
 export function clearWorkoutDraft() {
@@ -248,6 +279,7 @@ export function toCompletedWorkout(
   name: string,
   exercises: WorkoutExerciseItem[],
   startedAt: string,
+  presetId?: string,
 ): CompletedWorkout {
   const completedAt = new Date().toISOString()
 
@@ -269,11 +301,39 @@ export function toCompletedWorkout(
 
   return {
     id: crypto.randomUUID(),
+    ...(presetId ? { presetId } : {}),
     name,
     startedAt,
     completedAt,
     createdAt: completedAt,
     exercises: nextExercises,
+  }
+}
+
+export function getExercisePerformance(exerciseId: string) {
+  const previousExercise = loadCompletedWorkouts()
+    .slice()
+    .sort((a, b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime())
+    .map((workout) => ({
+      workout,
+      exercise: workout.exercises.find((entry) => entry.exerciseId === exerciseId),
+    }))
+    .find((entry) => entry.exercise?.sets.length)
+
+  const previousSet = previousExercise?.exercise?.sets.reduce((best, set) => {
+    if (set.weight > best.weight || (set.weight === best.weight && set.reps > best.reps)) {
+      return set
+    }
+    return best
+  })
+
+  const personalRecord = loadPersonalRecords()
+    .filter((record) => record.exerciseId === exerciseId)
+    .sort((a, b) => b.weight - a.weight || b.reps - a.reps)[0]
+
+  return {
+    previousPerformance: previousSet ? `Vorige keer: ${previousSet.weight} kg × ${previousSet.reps}` : undefined,
+    personalRecord: personalRecord ? `PR: ${personalRecord.weight} kg × ${personalRecord.reps}` : undefined,
   }
 }
 
