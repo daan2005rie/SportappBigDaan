@@ -3,14 +3,30 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import type { CompletedWorkout } from '../types'
-import { formatWorkoutDate, getWorkoutStats, loadCompletedWorkouts } from '../services/workoutStore'
+import { formatWorkoutDate, getWorkoutStats } from '../services/workoutStore'
+import { loadCompletedWorkouts } from '../services/supabaseFitnessStore'
 
 export function WorkoutHistoryPage() {
   const [workouts, setWorkouts] = useState<CompletedWorkout[]>([])
+  const [loading, setLoading] = useState(true)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
   useEffect(() => {
-    setWorkouts(loadCompletedWorkouts())
+    let active = true
+    void loadCompletedWorkouts()
+      .then((loadedWorkouts) => { if (active) setWorkouts(loadedWorkouts) })
+      .catch(() => { if (active) setErrorMessage('Je workoutgeschiedenis kon niet worden geladen.') })
+      .finally(() => { if (active) setLoading(false) })
+    return () => { active = false }
   }, [])
+
+  if (loading) {
+    return <div role="status" className="rounded-[28px] border border-slate-800 bg-slate-900/80 p-8 text-center text-sm text-slate-300">Geschiedenis laden…</div>
+  }
+
+  if (errorMessage) {
+    return <div role="alert" className="rounded-[28px] border border-rose-500/30 bg-rose-500/10 p-6 text-sm text-rose-200">{errorMessage}</div>
+  }
 
   if (workouts.length === 0) {
     return (

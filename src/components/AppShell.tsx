@@ -1,17 +1,22 @@
-import { ArrowUpRight, Dumbbell, Sparkles } from 'lucide-react'
-import { Link, NavLink, Route, Routes, useLocation } from 'react-router-dom'
+import { ArrowUpRight, Dumbbell, LogOut, Sparkles } from 'lucide-react'
+import { useState } from 'react'
+import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 
+import { useAuth } from '../auth/useAuth'
 import { navigationItems } from '../data/dashboard'
-import { HomePage } from '../pages/HomePage'
-import { ProgressPage } from '../pages/ProgressPage'
-import { WorkoutDetailsPage } from '../pages/WorkoutDetailsPage'
-import { WorkoutHistoryPage } from '../pages/WorkoutHistoryPage'
-import { WorkoutPage } from '../pages/WorkoutPage'
 import { BottomNav } from './BottomNav'
 
 export function AppShell() {
   const location = useLocation()
+  const { currentUser, migrationError, signOut } = useAuth()
+  const [authError, setAuthError] = useState<string | null>(null)
   const currentPage = navigationItems.find((item) => item.href === location.pathname) ?? navigationItems[0]
+
+  const handleSignOut = async () => {
+    setAuthError(null)
+    const result = await signOut()
+    if (result.error) setAuthError(result.error)
+  }
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-50">
@@ -68,24 +73,32 @@ export function AppShell() {
                 <h2 className="mt-1 text-2xl font-semibold text-white">{currentPage.label}</h2>
               </div>
 
-              {location.pathname === '/' ? (
-                <Link
-                  to="/workout"
-                  className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:brightness-110"
+              <div className="flex items-center gap-2">
+                {location.pathname === '/' ? (
+                  <Link
+                    to="/workout"
+                    className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 px-4 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:brightness-110"
+                  >
+                    Workout starten
+                    <ArrowUpRight className="h-4 w-4" />
+                  </Link>
+                ) : null}
+                <button
+                  type="button"
+                  onClick={handleSignOut}
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-700 px-3 py-2 text-sm text-slate-300 transition hover:border-slate-500 hover:text-white"
+                  aria-label={`Uitloggen${currentUser?.email ? ` (${currentUser.email})` : ''}`}
+                  title={currentUser?.email ?? 'Uitloggen'}
                 >
-                  Workout starten
-                  <ArrowUpRight className="h-4 w-4" />
-                </Link>
-              ) : null}
+                  <LogOut className="h-4 w-4" />
+                  <span className="hidden sm:inline">Uitloggen</span>
+                </button>
+              </div>
             </header>
 
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/workout" element={<WorkoutPage />} />
-              <Route path="/workouts" element={<WorkoutHistoryPage />} />
-              <Route path="/workouts/:id" element={<WorkoutDetailsPage />} />
-              <Route path="/progress" element={<ProgressPage />} />
-            </Routes>
+            {authError ? <p role="alert" className="rounded-2xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-200">{authError}</p> : null}
+            {migrationError ? <p role="alert" className="rounded-2xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-200">{migrationError}</p> : null}
+            <Outlet />
           </main>
         </div>
       </div>

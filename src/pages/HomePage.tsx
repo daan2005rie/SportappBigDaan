@@ -1,25 +1,43 @@
 import { Activity, CalendarDays, Flame, Target, Trophy } from 'lucide-react'
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
+import { useEffect, useState } from 'react'
 
 import { StatCard } from '../components/StatCard'
-import {
-  getDashboardMetrics,
-  getRecentPersonalRecords,
-  getTopExercisesByVolume,
-  getWeeklyVolumeTrend,
-  getWorkoutStats,
-  loadCompletedWorkouts,
-} from '../services/workoutStore'
+import { getAnalytics } from '../services/supabaseFitnessStore'
+
+type DashboardData = Awaited<ReturnType<typeof getAnalytics>>
 
 export function HomePage() {
-  const workouts = loadCompletedWorkouts()
-  const dashboardMetrics = getDashboardMetrics(workouts)
-  const latestWorkout = workouts[0] ?? null
-  const latestStats = latestWorkout ? getWorkoutStats(latestWorkout) : null
-  const volumeTrend = getWeeklyVolumeTrend(workouts).slice(-6)
-  const topExercises = getTopExercisesByVolume(workouts).slice(0, 3)
+  const [data, setData] = useState<DashboardData | null>(null)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
-  const prRecords = getRecentPersonalRecords(3)
+  useEffect(() => {
+    let active = true
+    void getAnalytics()
+      .then((analytics) => { if (active) setData(analytics) })
+      .catch(() => { if (active) setErrorMessage('Je fitnessgegevens konden niet worden geladen.') })
+    return () => { active = false }
+  }, [])
+
+  if (!data && !errorMessage) {
+    return <div role="status" className="rounded-[28px] border border-slate-800 bg-slate-900/80 p-8 text-center text-sm text-slate-300">Dashboard laden…</div>
+  }
+
+  if (!data) {
+    return <div role="alert" className="rounded-[28px] border border-rose-500/30 bg-rose-500/10 p-6 text-sm text-rose-200">{errorMessage}</div>
+  }
+
+  const workouts = data.workouts
+  const dashboardMetrics = data.metrics
+  const latestWorkout = workouts[0] ?? null
+  const latestStats = latestWorkout ? {
+    totalExercises: latestWorkout.exercises.length,
+    totalSets: latestWorkout.exercises.reduce((total, exercise) => total + exercise.sets.length, 0),
+  } : null
+  const volumeTrend = data.volumeTrend.slice(-6)
+  const topExercises = data.topExercises.slice(0, 3)
+
+  const prRecords = data.records.slice(0, 3)
   const latestRecords = prRecords.length
     ? prRecords.map((record) => ({
         id: record.id,

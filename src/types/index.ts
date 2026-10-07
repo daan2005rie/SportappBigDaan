@@ -90,6 +90,7 @@ export interface WorkoutPreset {
 }
 
 export interface WorkoutDraft {
+  id: string
   name: string
   startedAt: string
   exercises: WorkoutExerciseItem[]

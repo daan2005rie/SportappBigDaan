@@ -1,20 +1,55 @@
 import { ArrowLeft, CalendarDays, Dumbbell, Trophy } from 'lucide-react'
+import { useEffect, useState } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom'
 
-import {
-  findWorkoutById,
-  formatWorkoutDate,
-  getWorkoutStats,
-  loadPersonalRecords,
-} from '../services/workoutStore'
+import type { CompletedWorkout, PersonalRecord } from '../types'
+import { formatWorkoutDate, getWorkoutStats } from '../services/workoutStore'
+import { findWorkoutById, loadPersonalRecords } from '../services/supabaseFitnessStore'
 
 export function WorkoutDetailsPage() {
   const { id } = useParams()
   const location = useLocation()
-  const workout = id ? findWorkoutById(id) : null
+  const [detailResult, setDetailResult] = useState<{
+    workoutId: string
+    workout: CompletedWorkout | null
+    records: PersonalRecord[]
+    error: boolean
+  } | null>(null)
+
+  useEffect(() => {
+    if (!id) return
+    let active = true
+    void Promise.all([findWorkoutById(id), loadPersonalRecords()])
+      .then(([foundWorkout, records]) => {
+        if (!active) return
+        setDetailResult({
+          workoutId: id,
+          workout: foundWorkout,
+          records: records.filter((record) => record.workoutId === id),
+          error: false,
+        })
+      })
+      .catch(() => {
+        if (active) setDetailResult({ workoutId: id, workout: null, records: [], error: true })
+      })
+    return () => { active = false }
+  }, [id])
+
+  const currentDetail = detailResult?.workoutId === id ? detailResult : null
+  const workout = currentDetail?.workout ?? null
+  const savedRecords = currentDetail?.records ?? []
+  const loading = Boolean(id && !currentDetail)
+  const loadError = currentDetail?.error ?? false
   const locationRecords = (location.state as { newRecords?: Array<{ exerciseName: string; weight: number; reps: number }> } | null)?.newRecords ?? []
-  const savedNewRecords = id ? loadPersonalRecords().filter((record) => record.workoutId === id) : []
-  const visibleNewRecords = locationRecords.length > 0 ? locationRecords : savedNewRecords
+  const visibleNewRecords = locationRecords.length > 0 ? locationRecords : savedRecords
+
+  if (loading) {
+    return <div role="status" className="rounded-[28px] border border-slate-800 bg-slate-900/80 p-8 text-center text-sm text-slate-300">Workout laden…</div>
+  }
+
+  if (loadError) {
+    return <div role="alert" className="rounded-[28px] border border-rose-500/30 bg-rose-500/10 p-6 text-sm text-rose-200">Workoutgegevens konden niet worden geladen.</div>
+  }
 
   if (!workout) {
     return (

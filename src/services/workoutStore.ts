@@ -6,6 +6,7 @@ import type {
   PersonalRecord,
   WorkoutDraft,
   WorkoutExerciseItem,
+  WorkoutPreset,
 } from '../types'
 
 const COMPLETED_WORKOUTS_KEY = 'bigdaan.completed-workouts.v1'
@@ -205,11 +206,13 @@ export function loadWorkoutSessionDraft(): WorkoutDraft | null {
     const parsed = JSON.parse(raw) as WorkoutDraft | WorkoutExerciseItem[]
     if (Array.isArray(parsed)) {
       return parsed.length
-        ? { name: 'Workout', startedAt: new Date().toISOString(), exercises: parsed }
+        ? { id: crypto.randomUUID(), name: 'Workout', startedAt: new Date().toISOString(), exercises: parsed }
         : null
     }
 
-    return parsed && Array.isArray(parsed.exercises) ? parsed : null
+    return parsed && Array.isArray(parsed.exercises)
+      ? { ...parsed, id: parsed.id || crypto.randomUUID() }
+      : null
   } catch {
     return null
   }
@@ -236,6 +239,7 @@ export function saveWorkoutDraft(exercises: WorkoutExerciseItem[]) {
 
   const currentDraft = loadWorkoutSessionDraft()
   saveWorkoutSessionDraft({
+    id: currentDraft?.id ?? crypto.randomUUID(),
     name: currentDraft?.name ?? 'Workout',
     startedAt: currentDraft?.startedAt ?? new Date().toISOString(),
     ...(currentDraft?.presetId ? { presetId: currentDraft.presetId } : {}),
@@ -246,6 +250,55 @@ export function saveWorkoutDraft(exercises: WorkoutExerciseItem[]) {
 export function clearWorkoutDraft() {
   if (typeof window === 'undefined') return
   window.localStorage.removeItem(DRAFT_WORKOUT_KEY)
+}
+
+export function readLegacyFitnessData() {
+  if (typeof window === 'undefined') {
+    return { workouts: [] as CompletedWorkout[], personalRecords: [] as PersonalRecord[], draft: null as WorkoutDraft | null }
+  }
+
+  const parseArray = <T,>(key: string): T[] => {
+    const raw = window.localStorage.getItem(key)
+    if (!raw) return []
+    const parsed = JSON.parse(raw) as unknown
+    if (!Array.isArray(parsed)) throw new Error(`Lokale data in ${key} hebben een ongeldig formaat.`)
+    return parsed as T[]
+  }
+
+  const draftKey = window.localStorage.getItem(DRAFT_WORKOUT_KEY) !== null
+    ? DRAFT_WORKOUT_KEY
+    : 'bigdaan.workout-draft.v1'
+  const draftRaw = window.localStorage.getItem(draftKey)
+  let draft: WorkoutDraft | null = null
+  if (draftRaw) {
+    const parsed = JSON.parse(draftRaw) as unknown
+    if (Array.isArray(parsed)) {
+      if (parsed.length) {
+        draft = { id: crypto.randomUUID(), name: 'Workout', startedAt: new Date().toISOString(), exercises: parsed as WorkoutExerciseItem[] }
+      }
+    } else if (parsed && typeof parsed === 'object' && Array.isArray((parsed as WorkoutDraft).exercises)) {
+      const session = parsed as WorkoutDraft
+      draft = { ...session, id: session.id || crypto.randomUUID() }
+    } else {
+      throw new Error(`Lokaal workoutconcept in ${draftKey} heeft een ongeldig formaat.`)
+    }
+  }
+
+  return {
+    workouts: parseArray<CompletedWorkout>(COMPLETED_WORKOUTS_KEY),
+    personalRecords: parseArray<PersonalRecord>(PERSONAL_RECORDS_KEY),
+    draft,
+    workoutPresets: parseArray<WorkoutPreset>('bigdaan.workout-presets.v1'),
+  }
+}
+
+export function clearLegacyFitnessData() {
+  if (typeof window === 'undefined') return
+  window.localStorage.removeItem(COMPLETED_WORKOUTS_KEY)
+  window.localStorage.removeItem(DRAFT_WORKOUT_KEY)
+  window.localStorage.removeItem('bigdaan.workout-draft.v1')
+  window.localStorage.removeItem(PERSONAL_RECORDS_KEY)
+  window.localStorage.removeItem('bigdaan.workout-presets.v1')
 }
 
 export function validateWorkout(exercises: WorkoutExerciseItem[]) {
@@ -280,6 +333,7 @@ export function toCompletedWorkout(
   exercises: WorkoutExerciseItem[],
   startedAt: string,
   presetId?: string,
+  workoutId?: string,
 ): CompletedWorkout {
   const completedAt = new Date().toISOString()
 
@@ -300,7 +354,7 @@ export function toCompletedWorkout(
   }))
 
   return {
-    id: crypto.randomUUID(),
+    id: workoutId ?? crypto.randomUUID(),
     ...(presetId ? { presetId } : {}),
     name,
     startedAt,

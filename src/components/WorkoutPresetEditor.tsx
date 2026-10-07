@@ -8,13 +8,14 @@ import { ExerciseSelector } from './ExerciseSelector'
 type WorkoutPresetEditorProps = {
   preset?: WorkoutPreset
   onClose: () => void
-  onSave: (input: { id?: string; name: string; exercises: PresetExercise[] }) => string | null
+  onSave: (input: { id?: string; name: string; exercises: PresetExercise[] }) => Promise<string | null> | string | null
 }
 
 export function WorkoutPresetEditor({ preset, onClose, onSave }: WorkoutPresetEditorProps) {
   const [name, setName] = useState(preset?.name ?? '')
   const [exercises, setExercises] = useState<PresetExercise[]>(() => preset?.exercises.map((exercise) => ({ ...exercise })) ?? [])
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const [saving, setSaving] = useState(false)
   const saveLocked = useRef(false)
   const exerciseById = new Map(exerciseCatalog.map((exercise) => [exercise.id, exercise]))
 
@@ -48,13 +49,15 @@ export function WorkoutPresetEditor({ preset, onClose, onSave }: WorkoutPresetEd
       : exercise))
   }
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (saveLocked.current) return
     saveLocked.current = true
-    const error = onSave({ id: preset?.id, name, exercises })
+    setSaving(true)
+    const error = await onSave({ id: preset?.id, name, exercises })
     if (error) {
       setErrorMessage(error)
       saveLocked.current = false
+      setSaving(false)
       return
     }
     onClose()
@@ -204,10 +207,11 @@ export function WorkoutPresetEditor({ preset, onClose, onSave }: WorkoutPresetEd
           </button>
           <button
             type="button"
-            onClick={handleSave}
-            className="rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 px-5 py-2.5 text-sm font-semibold text-slate-950"
+            onClick={() => void handleSave()}
+            disabled={saving}
+            className="rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 px-5 py-2.5 text-sm font-semibold text-slate-950 disabled:cursor-not-allowed disabled:opacity-60"
           >
-            Wijzigingen opslaan
+            {saving ? 'Opslaan…' : 'Wijzigingen opslaan'}
           </button>
         </footer>
       </section>

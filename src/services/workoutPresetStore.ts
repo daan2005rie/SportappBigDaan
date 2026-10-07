@@ -40,6 +40,21 @@ export function loadWorkoutPresets(): WorkoutPreset[] {
   }
 }
 
+export function readLegacyWorkoutPresets(): WorkoutPreset[] {
+  if (typeof window === 'undefined') return []
+  const raw = window.localStorage.getItem(WORKOUT_PRESETS_KEY)
+  if (!raw) return []
+  const parsed = JSON.parse(raw) as unknown
+  if (!Array.isArray(parsed) || parsed.some((preset) => (
+    typeof preset?.id !== 'string'
+    || typeof preset?.name !== 'string'
+    || !Array.isArray(preset?.exercises)
+  ))) {
+    throw new Error('Lokale workoutpresets hebben een ongeldig formaat; de lokale data is behouden.')
+  }
+  return parsed as WorkoutPreset[]
+}
+
 export function validateWorkoutPreset(
   input: WorkoutPresetInput,
   existingPresets: WorkoutPreset[] = [],

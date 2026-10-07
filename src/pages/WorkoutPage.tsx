@@ -1,5 +1,5 @@
 import { Pencil, Play, Plus, Trash2 } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { exerciseCatalog } from '../data/exercises'
@@ -7,20 +7,20 @@ import { ExerciseSelector } from '../components/ExerciseSelector'
 import { WorkoutPresetEditor } from '../components/WorkoutPresetEditor'
 import type { Exercise, PresetExercise, WorkoutDraft, WorkoutExerciseItem, WorkoutPreset, WorkoutSetEntry } from '../types'
 import {
+  clearWorkoutDraft,
   createWorkoutExercisesFromPreset,
   deleteWorkoutPreset,
   loadWorkoutPresets,
-  MAX_WORKOUT_PRESETS,
   saveWorkoutPreset,
-} from '../services/workoutPresetStore'
-import {
-  clearWorkoutDraft,
   getExercisePerformance,
   loadWorkoutSessionDraft,
   saveCompletedWorkout,
   saveWorkoutSessionDraft,
-  toCompletedWorkout,
   validateWorkout,
+  MAX_WORKOUT_PRESETS,
+} from '../services/supabaseFitnessStore'
+import {
+  toCompletedWorkout,
 } from '../services/workoutStore'
 
 const createSet = (weight = '', reps = ''): WorkoutSetEntry => ({
@@ -32,13 +32,48 @@ const createSet = (weight = '', reps = ''): WorkoutSetEntry => ({
 export function WorkoutPage() {
   const navigate = useNavigate()
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
-  const [presets, setPresets] = useState<WorkoutPreset[]>(() => loadWorkoutPresets())
-  const [draft, setDraft] = useState<WorkoutDraft | null>(() => loadWorkoutSessionDraft())
+  const [presets, setPresets] = useState<WorkoutPreset[]>([])
+  const [draft, setDraft] = useState<WorkoutDraft | null>(null)
   const [editingPreset, setEditingPreset] = useState<WorkoutPreset | null | undefined>(undefined)
+  const [loadingData, setLoadingData] = useState(true)
+  const [savingWorkout, setSavingWorkout] = useState(false)
+  const saveQueue = useRef<Promise<void>>(Promise.resolve())
+  const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const finishLocked = useRef(false)
 
   useEffect(() => {
-    if (draft) saveWorkoutSessionDraft(draft)
-  }, [draft])
+    let active = true
+    void Promise.all([loadWorkoutPresets(), loadWorkoutSessionDraft()])
+      .then(([loadedPresets, loadedDraft]) => {
+        if (!active) return
+        setPresets(loadedPresets)
+        setDraft(loadedDraft)
+      })
+      .catch(() => {
+        if (active) setErrorMessage('Je workoutgegevens konden niet worden geladen. Controleer je verbinding en probeer opnieuw.')
+      })
+      .finally(() => {
+        if (active) setLoadingData(false)
+      })
+    return () => {
+      active = false
+      if (saveTimer.current) clearTimeout(saveTimer.current)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (loadingData || !draft) return
+    if (saveTimer.current) clearTimeout(saveTimer.current)
+    const snapshot = draft
+    saveTimer.current = setTimeout(() => {
+      saveQueue.current = saveQueue.current
+        .then(() => saveWorkoutSessionDraft(snapshot))
+        .catch(() => setErrorMessage('Je actieve workout kon niet worden opgeslagen. Controleer je verbinding.'))
+    }, 400)
+    return () => {
+      if (saveTimer.current) clearTimeout(saveTimer.current)
+    }
+  }, [draft, loadingData])
 
   const selectedExercises = draft?.exercises ?? []
   const exerciseById = new Map(exerciseCatalog.map((exercise) => [exercise.id, exercise]))
@@ -48,28 +83,23 @@ export function WorkoutPage() {
   }
 
   const addExercise = (exercise: Exercise) => {
-    updateExercises((current) => {
-      if (current.some((item) => item.exerciseId === exercise.id)) {
-        return current
-      }
-
-      const performance = getExercisePerformance(exercise.id)
-      const isPresetWorkout = Boolean(draft?.presetId)
-
-      return [
-        ...current,
-        {
-          id: `${exercise.id}-${crypto.randomUUID()}`,
-          exerciseId: exercise.id,
-          name: exercise.name,
-          muscleGroup: exercise.muscleGroup,
-          secondaryMuscleGroup: exercise.secondaryMuscleGroup,
-          type: exercise.type,
-          ...performance,
-          sets: [createSet(isPresetWorkout ? '' : '60', isPresetWorkout ? '' : '8')],
-        },
-      ]
-    })
+    void getExercisePerformance(exercise.id)
+      .then((performance) => {
+        const isPresetWorkout = Boolean(draft?.presetId)
+        updateExercises((current) => current.some((item) => item.exerciseId === exercise.id)
+          ? current
+          : [...current, {
+              id: `${exercise.id}-${crypto.randomUUID()}`,
+              exerciseId: exercise.id,
+              name: exercise.name,
+              muscleGroup: exercise.muscleGroup,
+              secondaryMuscleGroup: exercise.secondaryMuscleGroup,
+              type: exercise.type,
+              ...performance,
+              sets: [createSet(isPresetWorkout ? '' : '60', isPresetWorkout ? '' : '8')],
+            }])
+      })
+      .catch(() => setErrorMessage('De vorige prestaties konden niet worden geladen.'))
   }
 
   const removeExercise = (exerciseId: string) => {
@@ -126,20 +156,22 @@ export function WorkoutPage() {
     )
   }
 
-  const startWorkout = (preset?: WorkoutPreset) => {
+  const startWorkout = async (preset?: WorkoutPreset) => {
     if (!preset) {
-      setDraft({ name: 'Workout', startedAt: new Date().toISOString(), exercises: [] })
+      setDraft({ id: crypto.randomUUID(), name: 'Workout', startedAt: new Date().toISOString(), exercises: [] })
       setErrorMessage(null)
       return
     }
 
-    const result = createWorkoutExercisesFromPreset(preset)
+    try {
+    const result = await createWorkoutExercisesFromPreset(preset)
     if (!result.exercises.length) {
       setErrorMessage('Deze preset bevat geen beschikbare oefeningen. Bewerk de preset voordat je start.')
       return
     }
 
     setDraft({
+      id: crypto.randomUUID(),
       name: preset.name,
       startedAt: new Date().toISOString(),
       presetId: preset.id,
@@ -148,29 +180,37 @@ export function WorkoutPage() {
     setErrorMessage(result.missingExerciseCount
       ? `${result.missingExerciseCount} niet-beschikbare oefening(en) zijn overgeslagen.`
       : null)
+    } catch {
+      setErrorMessage('De preset kon niet worden gestart. Controleer je verbinding en probeer opnieuw.')
+    }
   }
 
-  const handleSavePreset = (input: { id?: string; name: string; exercises: PresetExercise[] }) => {
-    const result = saveWorkoutPreset(input)
-    if (!result.success) return result.error
-    setPresets(loadWorkoutPresets())
-    setErrorMessage(null)
-    return null
+  const handleSavePreset = async (input: { id?: string; name: string; exercises: PresetExercise[] }) => {
+    try {
+      await saveWorkoutPreset(input)
+      setPresets(await loadWorkoutPresets())
+      setErrorMessage(null)
+      return null
+    } catch (error) {
+      return error instanceof Error ? error.message : 'De preset kon niet worden opgeslagen.'
+    }
   }
 
   const handleDeletePreset = (preset: WorkoutPreset) => {
     const confirmed = window.confirm('Weet je zeker dat je deze preset wilt verwijderen? Je eerdere workouts blijven bewaard.')
     if (!confirmed) return
-    if (!deleteWorkoutPreset(preset.id)) {
+    void deleteWorkoutPreset(preset.id)
+      .then(async () => {
+        setPresets(await loadWorkoutPresets())
+        setErrorMessage(null)
+      })
+      .catch(() => {
       setErrorMessage('De preset kon niet worden verwijderd. Probeer het opnieuw.')
-      return
-    }
-    setPresets(loadWorkoutPresets())
-    setErrorMessage(null)
+      })
   }
 
-  const handleCompleteWorkout = () => {
-    if (!draft) return
+  const handleCompleteWorkout = async () => {
+    if (!draft || finishLocked.current || savingWorkout) return
     const validationError = validateWorkout(selectedExercises)
 
     if (validationError) {
@@ -178,22 +218,39 @@ export function WorkoutPage() {
       return
     }
 
-    const completedWorkout = toCompletedWorkout(
-      draft.name.trim() || 'Workout',
-      selectedExercises,
-      draft.startedAt,
-      draft.presetId,
-    )
-    const { newRecords } = saveCompletedWorkout(completedWorkout)
-    clearWorkoutDraft()
-    setDraft(null)
-    setErrorMessage(null)
-    navigate(`/workouts/${completedWorkout.id}`, { state: { newRecords } })
+    finishLocked.current = true
+    setSavingWorkout(true)
+    if (saveTimer.current) clearTimeout(saveTimer.current)
+    try {
+      await saveQueue.current
+      const completedWorkout = toCompletedWorkout(
+        draft.name.trim() || 'Workout',
+        selectedExercises,
+        draft.startedAt,
+        draft.presetId,
+        draft.id,
+      )
+      const { newRecords } = await saveCompletedWorkout(completedWorkout)
+      await clearWorkoutDraft()
+      setDraft(null)
+      setErrorMessage(null)
+      navigate(`/workouts/${completedWorkout.id}`, { state: { newRecords } })
+    } catch {
+      setErrorMessage('De workout kon niet worden opgeslagen. Je gegevens zijn bewaard; probeer opnieuw.')
+      finishLocked.current = false
+    } finally {
+      setSavingWorkout(false)
+    }
   }
 
   return (
     <div className="space-y-6">
-      {!draft ? (
+      {loadingData ? (
+        <div role="status" className="rounded-[28px] border border-slate-800 bg-slate-900/80 p-8 text-center text-sm text-slate-300">
+          Workoutgegevens laden…
+        </div>
+      ) : null}
+      {!loadingData && !draft ? (
         <>
           <section className="rounded-[28px] border border-slate-800 bg-slate-900/80 p-5 shadow-soft sm:p-6">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -298,7 +355,7 @@ export function WorkoutPage() {
             Start zonder preset
           </button>
         </>
-      ) : (
+      ) : !loadingData && draft ? (
         <>
           <section className="rounded-[28px] border border-slate-800 bg-slate-900/80 p-5 shadow-soft">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -313,10 +370,11 @@ export function WorkoutPage() {
               </div>
               <button
                 type="button"
-                onClick={handleCompleteWorkout}
+                onClick={() => void handleCompleteWorkout()}
+                disabled={savingWorkout}
                 className="rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 px-5 py-2.5 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30"
               >
-                Workout voltooien
+                {savingWorkout ? 'Workout opslaan…' : 'Workout voltooien'}
               </button>
             </div>
             {errorMessage ? (
@@ -437,7 +495,7 @@ export function WorkoutPage() {
             </section>
           </div>
         </>
-      )}
+      ) : null}
 
       {editingPreset !== undefined ? (
         <WorkoutPresetEditor

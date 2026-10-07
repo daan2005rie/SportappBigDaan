@@ -2,24 +2,31 @@ import { createClient } from '@supabase/supabase-js'
 
 export const databaseConfig = {
   provider: 'Supabase + Postgres',
-  persistence: 'local-first during phase 1, cloud-ready by design',
+  persistence: 'Supabase Auth + Row Level Security',
   authenticationReady: true,
   syncReady: true,
 }
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL ?? 'https://example.supabase.co'
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY ?? 'demo-key'
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
+const supabasePublishableKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+export const isSupabaseConfigured = Boolean(supabaseUrl && supabasePublishableKey)
+
+export const supabase = createClient(
+  supabaseUrl || 'https://missing-project.supabase.co',
+  supabasePublishableKey || 'missing-publishable-key',
+  {
   auth: {
-    persistSession: false,
-    autoRefreshToken: false,
+      persistSession: true,
+      autoRefreshToken: true,
+      detectSessionInUrl: true,
   },
   global: {
     headers: {
       'x-app-name': 'bigdaan',
     },
   },
-})
+  },
+)
 
 export const getDatabaseProviderLabel = () => databaseConfig.provider
