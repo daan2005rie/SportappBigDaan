@@ -6,10 +6,10 @@ Set these Vite variables in the ignored `.env.local` file:
 
 ```dotenv
 VITE_SUPABASE_URL=https://<project-ref>.supabase.co
-VITE_SUPABASE_ANON_KEY=<publishable-key>
+VITE_SUPABASE_PUBLISHABLE_KEY=<publishable-key>
 ```
 
-`VITE_SUPABASE_ANON_KEY` must contain the project's `sb_publishable_...` key (or legacy anon key). Never put a `service_role` or secret key in a Vite variable or browser bundle.
+`VITE_SUPABASE_PUBLISHABLE_KEY` must contain the project's `sb_publishable_...` key. Never put a `service_role` or secret key in a Vite variable or browser bundle.
 
 ## Apply the schema
 
