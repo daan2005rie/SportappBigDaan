@@ -236,7 +236,14 @@ export function WorkoutPage() {
       setErrorMessage(null)
       navigate(`/workouts/${completedWorkout.id}`, { state: { newRecords } })
     } catch {
-      setErrorMessage('De workout kon niet worden opgeslagen. Je gegevens zijn bewaard; probeer opnieuw.')
+      let message = 'De workout kon niet worden afgerond.'
+      try {
+        await saveWorkoutSessionDraft(draft)
+        message += ' Je actuele gegevens zijn als concept bewaard; probeer opnieuw.'
+      } catch {
+        message += ' De gegevens staan nog op deze pagina, maar de cloudkopie kon niet worden bevestigd. Laat deze pagina open en probeer opnieuw.'
+      }
+      setErrorMessage(message)
       finishLocked.current = false
     } finally {
       setSavingWorkout(false)
