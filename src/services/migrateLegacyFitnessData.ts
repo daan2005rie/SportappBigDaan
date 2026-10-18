@@ -6,7 +6,6 @@ import {
 } from './workoutStore'
 import {
   loadCompletedWorkouts,
-  loadPersonalRecords,
   loadWorkoutPresets,
   loadWorkoutSessionDraft,
   saveCompletedWorkout,
@@ -151,10 +150,9 @@ export async function migrateLegacyFitnessData(userId: string) {
     await saveWorkoutSessionDraft(draft)
   }
 
-  const [cloudWorkouts, cloudPresets, cloudRecords] = await Promise.all([
+  const [cloudWorkouts, cloudPresets] = await Promise.all([
     loadCompletedWorkouts(),
     loadWorkoutPresets(),
-    loadPersonalRecords(),
   ])
   const cloudWorkoutIds = new Set(cloudWorkouts.map((workout) => workout.id))
   const cloudPresetIds = new Set(cloudPresets.map((preset) => preset.id))
@@ -167,14 +165,15 @@ export async function migrateLegacyFitnessData(userId: string) {
   if (legacy.draft && !(await loadWorkoutSessionDraft())) {
     throw new Error('Het actieve workoutconcept is niet in Supabase teruggelezen; lokale data is behouden.')
   }
+  const migratedWorkoutIdSet = new Set(migratedWorkoutIds.values())
   for (const record of legacy.personalRecords) {
     const exercise = resolveExercise(record.exerciseId, record.exerciseName)
-    const expectedWorkoutId = migratedWorkoutIds.get(record.workoutId)
-    const found = cloudRecords.some((cloudRecord) => (
-      cloudRecord.exerciseId === exercise?.id
-      && cloudRecord.workoutId === expectedWorkoutId
-      && cloudRecord.weight >= record.weight
-    ))
+    const found = exercise ? cloudWorkouts
+      .filter((workout) => migratedWorkoutIdSet.has(workout.id))
+      .some((workout) => workout.exercises.some((workoutExercise) => (
+        workoutExercise.exerciseId === exercise.id
+        && workoutExercise.sets.some((set) => set.weight === record.weight && set.reps === record.reps)
+      ))) : false
     if (!found) throw new Error('Een opgeslagen PR kan niet uit de gemigreerde workoutgeschiedenis worden hersteld; lokale data is behouden.')
   }
 

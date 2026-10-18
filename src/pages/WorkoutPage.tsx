@@ -37,9 +37,13 @@ export function WorkoutPage() {
   const [editingPreset, setEditingPreset] = useState<WorkoutPreset | null | undefined>(undefined)
   const [loadingData, setLoadingData] = useState(true)
   const [savingWorkout, setSavingWorkout] = useState(false)
+  const [showCancelConfirmation, setShowCancelConfirmation] = useState(false)
+  const [cancellingWorkout, setCancellingWorkout] = useState(false)
+  const [cancelErrorMessage, setCancelErrorMessage] = useState<string | null>(null)
   const saveQueue = useRef<Promise<void>>(Promise.resolve())
   const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const finishLocked = useRef(false)
+  const cancelLocked = useRef(false)
 
   useEffect(() => {
     let active = true
@@ -62,7 +66,7 @@ export function WorkoutPage() {
   }, [])
 
   useEffect(() => {
-    if (loadingData || !draft) return
+    if (loadingData || !draft || cancelLocked.current) return
     if (saveTimer.current) clearTimeout(saveTimer.current)
     const snapshot = draft
     saveTimer.current = setTimeout(() => {
@@ -157,6 +161,7 @@ export function WorkoutPage() {
   }
 
   const startWorkout = async (preset?: WorkoutPreset) => {
+    cancelLocked.current = false
     if (!preset) {
       setDraft({ id: crypto.randomUUID(), name: 'Workout', startedAt: new Date().toISOString(), exercises: [] })
       setErrorMessage(null)
@@ -247,6 +252,31 @@ export function WorkoutPage() {
       finishLocked.current = false
     } finally {
       setSavingWorkout(false)
+    }
+  }
+
+  const handleCancelWorkout = async () => {
+    if (!draft || cancelLocked.current || finishLocked.current || savingWorkout) return
+    cancelLocked.current = true
+    setCancellingWorkout(true)
+    setCancelErrorMessage(null)
+    if (saveTimer.current) {
+      clearTimeout(saveTimer.current)
+      saveTimer.current = null
+    }
+
+    try {
+      await saveQueue.current
+      await clearWorkoutDraft()
+      setDraft(null)
+      setErrorMessage(null)
+      setShowCancelConfirmation(false)
+    } catch {
+      cancelLocked.current = false
+      setCancelErrorMessage('De workout kon niet worden geannuleerd. Je gegevens zijn behouden; probeer het opnieuw.')
+      setDraft((current) => current ? { ...current } : current)
+    } finally {
+      setCancellingWorkout(false)
     }
   }
 
@@ -383,6 +413,17 @@ export function WorkoutPage() {
               >
                 {savingWorkout ? 'Workout opslaan…' : 'Workout voltooien'}
               </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setCancelErrorMessage(null)
+                  setShowCancelConfirmation(true)
+                }}
+                disabled={savingWorkout || cancellingWorkout}
+                className="rounded-full border border-rose-500/50 px-5 py-2.5 text-sm font-semibold text-rose-200 transition hover:border-rose-400 hover:bg-rose-500/10 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                Workout annuleren
+              </button>
             </div>
             {errorMessage ? (
               <p role="alert" className="mt-4 rounded-2xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-200">
@@ -511,6 +552,46 @@ export function WorkoutPage() {
           onClose={() => setEditingPreset(undefined)}
           onSave={handleSavePreset}
         />
+      ) : null}
+
+      {showCancelConfirmation ? (
+        <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-slate-950/90 p-4 backdrop-blur-sm" role="presentation">
+          <section
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="cancel-workout-title"
+            aria-describedby="cancel-workout-description"
+            className="w-full max-w-md rounded-2xl border border-slate-700 bg-slate-900 p-5 shadow-soft sm:p-6"
+          >
+            <h2 id="cancel-workout-title" className="text-xl font-semibold text-white">Workout annuleren?</h2>
+            <p id="cancel-workout-description" className="mt-3 text-sm leading-6 text-slate-300">
+              Weet je zeker dat je deze workout wilt annuleren? Je voortgang van deze workout gaat verloren.
+            </p>
+            {cancelErrorMessage ? (
+              <p role="alert" className="mt-4 rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-200">
+                {cancelErrorMessage}
+              </p>
+            ) : null}
+            <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+              <button
+                type="button"
+                onClick={() => setShowCancelConfirmation(false)}
+                disabled={cancellingWorkout}
+                className="min-h-11 rounded-full border border-slate-600 px-5 py-2.5 text-sm font-semibold text-slate-200 transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                Verder trainen
+              </button>
+              <button
+                type="button"
+                onClick={() => void handleCancelWorkout()}
+                disabled={cancellingWorkout}
+                className="min-h-11 rounded-full bg-rose-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-rose-400 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                {cancellingWorkout ? 'Annuleren…' : 'Workout annuleren'}
+              </button>
+            </div>
+          </section>
+        </div>
       ) : null}
     </div>
   )
