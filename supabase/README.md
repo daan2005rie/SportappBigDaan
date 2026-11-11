@@ -61,3 +61,34 @@ Completed set validation uses the existing PostgreSQL column types and bounds ra
 - Personal muscle/equipment values are checked against catalog options in the database, including null entries, duplicates and primary/secondary overlap. ID/owner updates are blocked by both column privileges and a trigger. All new tables have RLS.
 - The preset RPC retains SECURITY DEFINER because preset tables are read-only to browser roles. It authenticates with `auth.uid()`, explicitly scopes every read/write to that owner, validates all exercise references, retains the preset-limit trigger, uses an empty search path and has no PUBLIC/anon execute grant. The other storage RPCs remain SECURITY INVOKER.
 - The local checks cover two-account and anonymous isolation, historical resaves/reordering, drafts, archived presets, and account deletion. An actual browser workflow also covered adding a personal exercise, creating/starting a preset, completing a workout and reading top sets. Local SQL verifies RPC execution privileges and SECURITY DEFINER/search_path settings. Hosted security advisors and current production configuration were not queried.
+
+## Active-workout exercise order (local change, not deployed)
+
+The workout draft JSON already preserves exercise array order. The arrow buttons
+move existing objects and IDs, including their sets. Reordering uses the existing
+serial autosave queue immediately; completion waits for in-flight saves and locks
+further edits. `persist_workout` already removes the matching draft atomically.
+History/details contain no reordering controls. Both TypeScript storage paths
+reject a changed exercise sequence when saving an existing completed workout.
+
+For enforcement through the database API as well, apply the new
+`20261111141156_freeze_completed_workout_order.sql` **only after review and explicit
+production approval**. It uses the existing draft and exercise-order structure;
+no existing workout/set/preset rows or timestamps are rewritten. A private,
+non-API table records the final exercise sequence, including existing histories.
+A deferred constraint trigger checks final transaction state, so same-order RPC
+resaves (which temporarily shift order numbers) continue to work. Changing the
+sequence, adding/removing exercises, and delete/reinsert workarounds are rejected.
+Whole-workout deletion still cascades normally. Completed IDs cannot be reopened
+as drafts. The private trigger function has an empty search path and no client
+EXECUTE/schema/table grants. Existing RPC signatures, RLS policies and presets
+are unchanged.
+
+`tests/workout_order.sql` is for a separate **local** database with synthetic data
+only. It checks draft order/set preservation, completion, same-order resaves,
+historical-order rejection through RPC and direct writes, snapshot preservation,
+private-schema access, and workout deletion. It flushes deferred constraints to
+simulate RPC transaction boundaries and rolls back its fixtures. The existing
+`rls_isolation.sql` suite is still required. Neither script may run on production.
+The new migration and both SQL suites were tested in an isolated local database;
+fingerprints of all pre-existing test-fixture fields/timestamps stayed unchanged.

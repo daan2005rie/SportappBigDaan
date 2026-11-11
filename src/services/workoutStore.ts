@@ -1,3 +1,4 @@
+import { assertCompletedWorkoutOrder } from './workoutOrder'
 import type {
   CompletedWorkout,
   CompletedWorkoutExercise,
@@ -187,7 +188,8 @@ export function applyPersonalRecords(workout: CompletedWorkout) {
 
 export function saveCompletedWorkout(workout: CompletedWorkout) {
   const current = loadCompletedWorkouts()
-  const next = [workout, ...current].sort(
+  assertCompletedWorkoutOrder(workout, current)
+  const next = [workout, ...current.filter((item) => item.id !== workout.id)].sort(
     (a, b) => new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime(),
   )
 

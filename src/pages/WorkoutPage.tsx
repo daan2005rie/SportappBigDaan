@@ -1,4 +1,4 @@
-import { Pencil, Play, Plus, Trash2 } from 'lucide-react'
+import { ArrowDown, ArrowUp, Pencil, Play, Plus, Trash2 } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -24,6 +24,9 @@ import {
   toCompletedWorkout,
 } from '../services/workoutStore'
 
+import { createWorkoutDraftSaveQueue } from '../services/workoutDraftSaveQueue'
+import { moveWorkoutExercise } from '../services/workoutOrder'
+
 const createSet = (weight = '', reps = ''): WorkoutSetEntry => ({
   id: `set-${crypto.randomUUID()}`,
   weight,
@@ -42,7 +45,8 @@ export function WorkoutPage() {
   const [showCancelConfirmation, setShowCancelConfirmation] = useState(false)
   const [cancellingWorkout, setCancellingWorkout] = useState(false)
   const [cancelErrorMessage, setCancelErrorMessage] = useState<string | null>(null)
-  const saveQueue = useRef<Promise<void>>(Promise.resolve())
+  const saveQueue = useRef(createWorkoutDraftSaveQueue(saveWorkoutSessionDraft))
+  const saveImmediately = useRef(false)
   const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const finishLocked = useRef(false)
   const cancelLocked = useRef(false)
@@ -69,14 +73,15 @@ export function WorkoutPage() {
   }, [])
 
   useEffect(() => {
-    if (loadingData || !draft || cancelLocked.current) return
+    if (loadingData || !draft || cancelLocked.current || finishLocked.current) return
     if (saveTimer.current) clearTimeout(saveTimer.current)
     const snapshot = draft
     saveTimer.current = setTimeout(() => {
-      saveQueue.current = saveQueue.current
-        .then(() => saveWorkoutSessionDraft(snapshot))
+      if (finishLocked.current || cancelLocked.current) return
+      void saveQueue.current.save(snapshot)
         .catch(() => setErrorMessage('Je actieve workout kon niet worden opgeslagen. Controleer je verbinding.'))
-    }, 400)
+    }, saveImmediately.current ? 0 : 400)
+    saveImmediately.current = false
     return () => {
       if (saveTimer.current) clearTimeout(saveTimer.current)
     }
@@ -86,7 +91,14 @@ export function WorkoutPage() {
   const exerciseById = new Map([...exerciseCatalog, ...personalExercises].map((exercise) => [exercise.id, exercise]))
 
   const updateExercises = (update: (current: WorkoutExerciseItem[]) => WorkoutExerciseItem[]) => {
+    if (finishLocked.current || cancelLocked.current) return
     setDraft((current) => current ? { ...current, exercises: update(current.exercises) } : current)
+  }
+
+  const moveExercise = (exerciseId: string, direction: -1 | 1) => {
+    if (finishLocked.current || cancelLocked.current) return
+    saveImmediately.current = true
+    setDraft((current) => moveWorkoutExercise(current, exerciseId, direction))
   }
 
   const addExercise = (exercise: Exercise) => {
@@ -169,6 +181,7 @@ export function WorkoutPage() {
 
   const startWorkout = async (preset?: WorkoutPreset) => {
     cancelLocked.current = false
+    finishLocked.current = false
     if (!preset) {
       setDraft({ id: crypto.randomUUID(), name: 'Workout', startedAt: new Date().toISOString(), exercises: [] })
       setErrorMessage(null)
@@ -222,7 +235,7 @@ export function WorkoutPage() {
   }
 
   const handleCompleteWorkout = async () => {
-    if (!draft || finishLocked.current || savingWorkout) return
+    if (!draft || finishLocked.current || cancelLocked.current || savingWorkout) return
     const validationError = validateWorkout(selectedExercises)
 
     if (validationError) {
@@ -234,7 +247,7 @@ export function WorkoutPage() {
     setSavingWorkout(true)
     if (saveTimer.current) clearTimeout(saveTimer.current)
     try {
-      await saveQueue.current
+      await saveQueue.current.flush()
       const completedWorkout = toCompletedWorkout(
         draft.name.trim() || 'Workout',
         selectedExercises,
@@ -243,7 +256,7 @@ export function WorkoutPage() {
         draft.id,
       )
       const { newRecords } = await saveCompletedWorkout(completedWorkout)
-      await clearWorkoutDraft()
+      // persist_workout atomically removes this draft on successful completion.
       setDraft(null)
       setErrorMessage(null)
       navigate(`/workouts/${completedWorkout.id}`, { state: { newRecords } })
@@ -273,7 +286,7 @@ export function WorkoutPage() {
     }
 
     try {
-      await saveQueue.current
+      await saveQueue.current.flush()
       await clearWorkoutDraft()
       setDraft(null)
       setErrorMessage(null)
@@ -407,6 +420,7 @@ export function WorkoutPage() {
                 <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Workout builder</p>
                 <input
                   value={draft.name}
+                  disabled={savingWorkout || cancellingWorkout}
                   onChange={(event) => setDraft((current) => current ? { ...current, name: event.target.value } : current)}
                   className="mt-2 w-full rounded-2xl border border-slate-700 bg-slate-950/70 px-3 py-2 text-3xl font-semibold text-white outline-none placeholder:text-slate-500 focus:border-emerald-500"
                   aria-label="Naam van de workout"
@@ -415,7 +429,7 @@ export function WorkoutPage() {
               <button
                 type="button"
                 onClick={() => void handleCompleteWorkout()}
-                disabled={savingWorkout}
+                disabled={savingWorkout || cancellingWorkout}
                 className="rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 px-5 py-2.5 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/30"
               >
                 {savingWorkout ? 'Workout opslaan…' : 'Workout voltooien'}
@@ -456,21 +470,37 @@ export function WorkoutPage() {
                 </div>
               ) : (
                 <div className="space-y-6">
-                  {selectedExercises.map((exercise) => (
-                    <div key={exercise.id} className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
+                  {selectedExercises.map((exercise, exerciseIndex) => (
+                    <div key={exercise.id} className="min-w-0 rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
                       <div className="flex items-start justify-between gap-3">
-                        <div>
+                        <div className="min-w-0 break-words">
                           <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Oefening</p>
                           <h4 className="mt-1 text-xl font-semibold text-white">{exercise.name}</h4>
                         </div>
-                        <button
-                          type="button"
-                          onClick={() => removeExercise(exercise.id)}
-                          className="rounded-full border border-slate-700 p-2 text-slate-300 transition hover:border-rose-500 hover:text-rose-300"
-                          aria-label={`Verwijder ${exercise.name}`}
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </button>
+                        <div className="flex shrink-0 flex-col items-center gap-1">
+                          <div className="flex gap-1" role="group" aria-label={`Volgorde van ${exercise.name}`}>
+                            <button type="button" onClick={() => moveExercise(exercise.id, -1)}
+                              disabled={exerciseIndex === 0 || savingWorkout || cancellingWorkout}
+                              aria-label={`Oefening omhoog verplaatsen: ${exercise.name}`}
+                              className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-700 text-slate-300 transition hover:border-emerald-500 hover:text-emerald-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400 disabled:cursor-not-allowed disabled:opacity-30">
+                              <ArrowUp className="h-4 w-4" aria-hidden="true" />
+                            </button>
+                            <button type="button" onClick={() => moveExercise(exercise.id, 1)}
+                              disabled={exerciseIndex === selectedExercises.length - 1 || savingWorkout || cancellingWorkout}
+                              aria-label={`Oefening omlaag verplaatsen: ${exercise.name}`}
+                              className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-700 text-slate-300 transition hover:border-emerald-500 hover:text-emerald-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400 disabled:cursor-not-allowed disabled:opacity-30">
+                              <ArrowDown className="h-4 w-4" aria-hidden="true" />
+                            </button>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => removeExercise(exercise.id)}
+                            className="rounded-full border border-slate-700 p-2 text-slate-300 transition hover:border-rose-500 hover:text-rose-300"
+                            aria-label={`Verwijder ${exercise.name}`}
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </button>
+                        </div>
                       </div>
 
                       <div className="mt-3 flex flex-wrap gap-2 text-xs text-slate-400">

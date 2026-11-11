@@ -15,6 +15,8 @@ import type { WorkoutPreset as WorkoutPresetType } from '../types'
 import { supabase } from './database'
 import { getDashboardMetrics, getExerciseProgressForExercise, getTopExerciseSets, getTopExercisesByVolume, getWeeklyVolumeTrend } from './workoutStore'
 
+import { assertCompletedWorkoutOrder } from './workoutOrder'
+
 export const MAX_WORKOUT_PRESETS = 10
 
 type WorkoutRow = {
@@ -438,6 +440,7 @@ function detectNewRecords(workout: CompletedWorkout, previousWorkouts: Completed
 
 export async function saveCompletedWorkout(workout: CompletedWorkout) {
   const previousWorkouts = await loadCompletedWorkouts()
+  assertCompletedWorkoutOrder(workout, previousWorkouts)
   const payload = {
     ...workout,
     exercises: workout.exercises.map((exercise, index) => ({

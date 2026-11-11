@@ -11,7 +11,7 @@ const supabaseMocks = vi.hoisted(() => ({
 
 vi.mock('./database', () => ({ supabase: supabaseMocks }))
 
-import { archivePersonalExercise, loadCompletedWorkouts, loadPersonalExercises, loadTopExerciseSets, saveCompletedWorkout, createWorkoutExercisesFromPreset, saveWorkoutSessionDraft, validateWorkout } from './supabaseFitnessStore'
+import { archivePersonalExercise, loadCompletedWorkouts, loadPersonalExercises, loadTopExerciseSets, saveCompletedWorkout, createWorkoutExercisesFromPreset, saveWorkoutSessionDraft, loadWorkoutSessionDraft, validateWorkout } from './supabaseFitnessStore'
 import { exerciseCatalog } from '../data/exercises'
 import type { WorkoutDraft, WorkoutExerciseItem } from '../types'
 
@@ -267,5 +267,26 @@ describe('set compatibility', () => {
     await saveWorkoutSessionDraft(draft)
     expect(supabaseMocks.rpc).toHaveBeenCalledWith('persist_workout_draft', { p_draft: draft })
     expect(draft.exercises[0].sets).toEqual(sets)
+  })
+})
+
+
+describe('workout order persistence', () => {
+  it('preserves reordered draft payloads and restores their full set data', async () => {
+    const draft: WorkoutDraft = { id: 'draft', name: 'Training', startedAt: '2026-11-11T10:00:00Z', exercises: ['10', '9'].map((exerciseId) => ({
+      id: `item-${exerciseId}`, exerciseId, name: `Exercise ${exerciseId}`, muscleGroup: 'Borst', type: 'Kabel',
+      sets: [{ id: `set-${exerciseId}`, weight: '42.5', reps: '8' }],
+    })) }
+    await saveWorkoutSessionDraft(draft)
+    expect(supabaseMocks.rpc).toHaveBeenCalledWith('persist_workout_draft', { p_draft: draft })
+    supabaseMocks.rows.workout_drafts = [{ id: draft.id, user_id: 'owner-a', name: draft.name, started_at: draft.startedAt, preset_id: null, draft_data: draft }]
+    expect(await loadWorkoutSessionDraft()).toEqual(draft)
+  })
+
+  it('blocks historical reorders before calling the completed-workout RPC', async () => {
+    supabaseMocks.rows.workout_exercises.push({ ...supabaseMocks.rows.workout_exercises[0], id: 'exercise-owner-2', exercise_id: '10', exercise_order: 2 })
+    const [workout] = await loadCompletedWorkouts()
+    await expect(saveCompletedWorkout({ ...workout, exercises: workout.exercises.toReversed() })).rejects.toThrow('staat vast')
+    expect(supabaseMocks.rpc).not.toHaveBeenCalled()
   })
 })
