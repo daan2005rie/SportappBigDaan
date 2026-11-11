@@ -2,35 +2,45 @@ import { Search } from 'lucide-react'
 import { useMemo, useState } from 'react'
 
 import { exerciseCatalog } from '../data/exercises'
-import type { Exercise } from '../types'
+import { getSelectableExercises } from '../services/exerciseLibrary'
+import type { Exercise, PersonalExercise } from '../types'
 
 type ExerciseSelectorProps = {
   selectedExerciseIds: string[]
   onAdd: (exercise: Exercise) => void
   muscleGroupFilter?: boolean
+  personalExercises?: PersonalExercise[]
 }
 
 export function ExerciseSelector({
   selectedExerciseIds,
   onAdd,
   muscleGroupFilter = false,
+  personalExercises = [],
 }: ExerciseSelectorProps) {
   const [query, setQuery] = useState('')
   const [selectedMuscleGroup, setSelectedMuscleGroup] = useState('')
   const muscleGroups = useMemo(
-    () => [...new Set(exerciseCatalog.map((exercise) => exercise.muscleGroup))].sort((a, b) => a.localeCompare(b)),
-    [],
+    () => [...new Set([
+      ...exerciseCatalog.flatMap((exercise) => [exercise.muscleGroup, ...(exercise.secondaryMuscles ?? [])]),
+      ...personalExercises
+        .filter((exercise) => !exercise.archivedAt)
+        .flatMap((exercise) => [...exercise.primaryMuscleGroups, ...exercise.secondaryMuscles]),
+    ])].sort((a, b) => a.localeCompare(b)),
+    [personalExercises],
   )
   const filteredExercises = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase()
-    const matches = exerciseCatalog.filter((exercise) => (
+    const availableExercises = getSelectableExercises(exerciseCatalog, personalExercises)
+    const matches = availableExercises.filter((exercise) => (
       exercise.name.toLowerCase().includes(normalizedQuery)
-      && (!selectedMuscleGroup || exercise.muscleGroup === selectedMuscleGroup)
+      && (!selectedMuscleGroup || (exercise.primaryMuscleGroups ?? [exercise.muscleGroup]).includes(selectedMuscleGroup)
+        || (exercise.secondaryMuscles ?? []).includes(selectedMuscleGroup))
     ))
 
     if (!normalizedQuery && !selectedMuscleGroup) return matches.slice(0, 8)
     return matches
-  }, [query, selectedMuscleGroup])
+  }, [query, selectedMuscleGroup, personalExercises])
 
   return (
     <section className="rounded-[28px] border border-slate-800 bg-slate-900/80 p-5 shadow-soft">
@@ -70,8 +80,12 @@ export function ExerciseSelector({
             <li key={exercise.id} className="flex items-center justify-between gap-3 rounded-2xl border border-slate-800 bg-slate-950/70 p-3">
               <div className="min-w-0">
                 <p className="font-medium text-white">{exercise.name}</p>
+                <p className="mt-1 text-[10px] uppercase tracking-[0.14em] text-emerald-300">
+                  {'userId' in exercise ? 'Eigen' : 'Standaard'}
+                </p>
                 <p className="mt-1 text-xs uppercase tracking-[0.14em] text-slate-400">
-                  {exercise.muscleGroup} • {exercise.type} • {exercise.movementType}
+                  {(exercise.primaryMuscleGroups ?? [exercise.muscleGroup]).join(', ')} • {exercise.type}
+                  {exercise.movementType ? ` • ${exercise.movementType}` : ''}
                 </p>
                 {exercise.secondaryMuscles?.length ? (
                   <p className="mt-1 text-xs text-slate-400">{exercise.secondaryMuscles.join(', ')}</p>

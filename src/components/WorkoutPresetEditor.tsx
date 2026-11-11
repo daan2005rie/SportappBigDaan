@@ -2,22 +2,23 @@ import { ArrowDown, ArrowUp, Minus, Plus, Trash2, X } from 'lucide-react'
 import { useRef, useState } from 'react'
 
 import { exerciseCatalog } from '../data/exercises'
-import type { PresetExercise, WorkoutPreset } from '../types'
+import type { PersonalExercise, PresetExercise, WorkoutPreset } from '../types'
 import { ExerciseSelector } from './ExerciseSelector'
 
 type WorkoutPresetEditorProps = {
   preset?: WorkoutPreset
   onClose: () => void
   onSave: (input: { id?: string; name: string; exercises: PresetExercise[] }) => Promise<string | null> | string | null
+  personalExercises?: PersonalExercise[]
 }
 
-export function WorkoutPresetEditor({ preset, onClose, onSave }: WorkoutPresetEditorProps) {
+export function WorkoutPresetEditor({ preset, onClose, onSave, personalExercises = [] }: WorkoutPresetEditorProps) {
   const [name, setName] = useState(preset?.name ?? '')
   const [exercises, setExercises] = useState<PresetExercise[]>(() => preset?.exercises.map((exercise) => ({ ...exercise })) ?? [])
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [saving, setSaving] = useState(false)
   const saveLocked = useRef(false)
-  const exerciseById = new Map(exerciseCatalog.map((exercise) => [exercise.id, exercise]))
+  const exerciseById = new Map([...exerciseCatalog, ...personalExercises].map((exercise) => [exercise.id, exercise]))
 
   const addExercise = (exerciseId: string) => {
     setExercises((current) => [
@@ -53,14 +54,19 @@ export function WorkoutPresetEditor({ preset, onClose, onSave }: WorkoutPresetEd
     if (saveLocked.current) return
     saveLocked.current = true
     setSaving(true)
-    const error = await onSave({ id: preset?.id, name, exercises })
-    if (error) {
-      setErrorMessage(error)
+    try {
+      const error = await onSave({ id: preset?.id, name, exercises })
+      if (error) {
+        setErrorMessage(error)
+        return
+      }
+      onClose()
+    } catch {
+      setErrorMessage('De preset kon niet worden opgeslagen. Probeer het opnieuw.')
+    } finally {
       saveLocked.current = false
       setSaving(false)
-      return
     }
-    onClose()
   }
 
   return (
@@ -107,6 +113,7 @@ export function WorkoutPresetEditor({ preset, onClose, onSave }: WorkoutPresetEd
               selectedExerciseIds={exercises.map((exercise) => exercise.exerciseId)}
               onAdd={(exercise) => addExercise(exercise.id)}
               muscleGroupFilter
+              personalExercises={personalExercises}
             />
           </div>
 

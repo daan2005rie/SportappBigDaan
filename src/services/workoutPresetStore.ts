@@ -1,5 +1,5 @@
 import { exerciseCatalog } from '../data/exercises'
-import type { PresetExercise, WorkoutExerciseItem, WorkoutPreset } from '../types'
+import type { PersonalExercise, PresetExercise, WorkoutExerciseItem, WorkoutPreset } from '../types'
 import { getExercisePerformance } from './workoutStore'
 
 const WORKOUT_PRESETS_KEY = 'bigdaan.workout-presets.v1'
@@ -142,11 +142,11 @@ export function deleteWorkoutPreset(presetId: string): boolean {
   }
 }
 
-export function createWorkoutExercisesFromPreset(preset: WorkoutPreset): {
+export function createWorkoutExercisesFromPreset(preset: WorkoutPreset, personalExercises: PersonalExercise[] = []): {
   exercises: WorkoutExerciseItem[]
   missingExerciseCount: number
 } {
-  const exerciseById = new Map(exerciseCatalog.map((exercise) => [exercise.id, exercise]))
+  const exerciseById = new Map([...exerciseCatalog, ...personalExercises].map((exercise) => [exercise.id, exercise]))
   let missingExerciseCount = 0
   const exercises = preset.exercises
     .slice()
@@ -164,8 +164,12 @@ export function createWorkoutExercisesFromPreset(preset: WorkoutPreset): {
         exerciseId: exercise.id,
         name: exercise.name,
         muscleGroup: exercise.muscleGroup,
+        primaryMuscles: exercise.primaryMuscleGroups ?? [exercise.muscleGroup],
         secondaryMuscleGroup: exercise.secondaryMuscleGroup,
+        secondaryMuscles: exercise.secondaryMuscles ?? (exercise.secondaryMuscleGroup ? [exercise.secondaryMuscleGroup] : []),
         type: exercise.type,
+        movementType: exercise.movementType,
+        description: exercise.description,
         ...performance,
         sets: Array.from({ length: Math.min(MAX_DEFAULT_SETS, Math.max(MIN_DEFAULT_SETS, presetExercise.defaultSets)) }, () => ({
           id: `set-${crypto.randomUUID()}`,

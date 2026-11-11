@@ -5,7 +5,7 @@ import { navigationItems } from '../data/dashboard'
 export function BottomNav() {
   return (
     <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-slate-800 bg-slate-950/90 px-3 py-2 backdrop-blur lg:hidden">
-      <ul className="mx-auto grid max-w-md grid-cols-4 gap-2">
+      <ul className="mx-auto grid max-w-lg grid-cols-5 gap-1 sm:gap-2">
         {navigationItems.map((item) => {
           const Icon = item.icon
 
@@ -14,7 +14,7 @@ export function BottomNav() {
               <NavLink
                 to={item.href}
                 className={({ isActive }) =>
-                  `flex flex-col items-center justify-center gap-1 rounded-2xl px-2 py-2 text-[11px] transition ${
+                  `flex flex-col items-center justify-center gap-1 rounded-xl px-1 py-2 text-[10px] transition sm:rounded-2xl sm:px-2 sm:text-[11px] ${
                     isActive ? 'bg-emerald-500/15 text-emerald-300' : 'text-slate-400 hover:bg-slate-800'
                   }`
                 }

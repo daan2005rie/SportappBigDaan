@@ -6,6 +6,7 @@ import {
   getExerciseProgressForExercise,
   getTopExercisesByVolume,
   getWeeklyVolumeTrend,
+  toCompletedWorkout,
 } from './workoutStore'
 
 describe('detectPersonalRecords', () => {
@@ -52,6 +53,31 @@ describe('detectPersonalRecords', () => {
       exerciseId: 'bench-press',
       weight: 85,
       reps: 4,
+    })
+  })
+})
+
+describe('toCompletedWorkout', () => {
+  it('keeps personal exercise metadata as a historical snapshot', () => {
+    const completed = toCompletedWorkout('Test', [{
+      id: 'exercise-1',
+      exerciseId: '70000000-0000-4000-8000-000000000001',
+      name: 'Cable press variation',
+      muscleGroup: 'Borst',
+      primaryMuscles: ['Borst', 'Schouders'],
+      secondaryMuscles: ['Triceps'],
+      type: 'Kabel',
+      movementType: 'Compound',
+      description: 'Gecontroleerde uitvoering.',
+      sets: [{ id: 'set-1', weight: '50', reps: '8' }],
+    }], '2026-10-01T10:00:00.000Z')
+
+    expect(completed.exercises[0]).toMatchObject({
+      name: 'Cable press variation',
+      primaryMuscles: ['Borst', 'Schouders'],
+      secondaryMuscles: ['Triceps'],
+      movementType: 'Compound',
+      description: 'Gecontroleerde uitvoering.',
     })
   })
 })

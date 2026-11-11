@@ -342,8 +342,12 @@ export function toCompletedWorkout(
     exerciseId: exercise.exerciseId,
     name: exercise.name,
     muscleGroup: exercise.muscleGroup,
+    primaryMuscles: exercise.primaryMuscles ?? [exercise.muscleGroup],
     secondaryMuscleGroup: exercise.secondaryMuscleGroup,
+    secondaryMuscles: exercise.secondaryMuscles ?? (exercise.secondaryMuscleGroup ? [exercise.secondaryMuscleGroup] : []),
     type: exercise.type,
+    movementType: exercise.movementType,
+    description: exercise.description,
     order: index + 1,
     sets: exercise.sets.map((set, setIndex) => ({
       id: `${set.id}-${setIndex}`,
@@ -561,7 +565,7 @@ export function getExerciseProgressForExercise(
     })
     .filter((point): point is ExerciseProgressDatum & { timestamp: number } => Boolean(point))
     .sort((a, b) => a.timestamp - b.timestamp)
-    .map(({ timestamp, ...point }) => point)
+    .map(({ timestamp: _timestamp, ...point }) => point)
 
   return points
 }
@@ -570,6 +574,42 @@ export function getPersonalRecordsForExercise(exerciseId: string): PersonalRecor
   return loadPersonalRecords()
     .filter((record) => record.exerciseId === exerciseId)
     .sort((a, b) => b.weight - a.weight)
+}
+
+export type ExerciseSetPerformance = {
+  id: string
+  workoutId: string
+  workoutName: string
+  completedAt: string
+  setNumber: number
+  weight: number
+  reps: number
+}
+
+export function getTopExerciseSets(
+  exerciseId: string,
+  workouts: CompletedWorkout[] = loadCompletedWorkouts(),
+  limit = 5,
+): ExerciseSetPerformance[] {
+  return workouts
+    .flatMap((workout) => workout.exercises
+      .filter((exercise) => exercise.exerciseId === exerciseId)
+      .flatMap((exercise) => exercise.sets.map((set) => ({
+        id: `${workout.id}:${exercise.id}:${set.id}`,
+        workoutId: workout.id,
+        workoutName: workout.name,
+        completedAt: workout.completedAt,
+        setNumber: set.setNumber,
+        weight: set.weight,
+        reps: set.reps,
+      }))))
+    .sort((first, second) => (
+      second.weight - first.weight
+      || second.reps - first.reps
+      || new Date(second.completedAt).getTime() - new Date(first.completedAt).getTime()
+      || first.setNumber - second.setNumber
+    ))
+    .slice(0, Math.max(0, limit))
 }
 
 export type { CompletedWorkoutSet }

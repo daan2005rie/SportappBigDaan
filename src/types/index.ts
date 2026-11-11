@@ -1,6 +1,6 @@
 import type { LucideIcon } from 'lucide-react'
 
-export type NavigationKey = 'home' | 'workout' | 'workouts' | 'progress'
+export type NavigationKey = 'home' | 'workout' | 'exercises' | 'workouts' | 'progress'
 
 export interface NavigationItem {
   key: NavigationKey
@@ -42,11 +42,19 @@ export interface Exercise {
   id: string
   name: string
   muscleGroup: string
+  primaryMuscleGroups?: string[]
   secondaryMuscleGroup?: string
   secondaryMuscles?: string[]
   type: string
   movementType?: string
   description?: string
+}
+
+export interface PersonalExercise extends Exercise {
+  userId: string
+  primaryMuscleGroups: string[]
+  secondaryMuscles: string[]
+  archivedAt: string | null
 }
 
 export interface ExerciseOption {
@@ -67,8 +75,12 @@ export interface WorkoutExerciseItem {
   exerciseId: string
   name: string
   muscleGroup: string
+  primaryMuscles?: string[]
   secondaryMuscleGroup?: string
+  secondaryMuscles?: string[]
   type: string
+  movementType?: string
+  description?: string
   sets: WorkoutSetEntry[]
   previousPerformance?: string
   personalRecord?: string
@@ -109,8 +121,12 @@ export interface CompletedWorkoutExercise {
   exerciseId: string
   name: string
   muscleGroup: string
+  primaryMuscles?: string[]
   secondaryMuscleGroup?: string
+  secondaryMuscles?: string[]
   type: string
+  movementType?: string
+  description?: string
   order: number
   sets: CompletedWorkoutSet[]
 }

@@ -1,8 +1,10 @@
-import { exerciseCatalog } from '../data/exercises'
+import { equipmentOptions, exerciseCatalog, movementTypeOptions, muscleGroupOptions } from '../data/exercises'
 import type {
   CompletedWorkout,
   CompletedWorkoutExercise,
   CompletedWorkoutSet,
+  Exercise,
+  PersonalExercise,
   PersonalRecord,
   PresetExercise,
   WorkoutDraft,
@@ -11,7 +13,7 @@ import type {
 } from '../types'
 import type { WorkoutPreset as WorkoutPresetType } from '../types'
 import { supabase } from './database'
-import { getDashboardMetrics, getExerciseProgressForExercise, getTopExercisesByVolume, getWeeklyVolumeTrend } from './workoutStore'
+import { getDashboardMetrics, getExerciseProgressForExercise, getTopExerciseSets, getTopExercisesByVolume, getWeeklyVolumeTrend } from './workoutStore'
 
 export const MAX_WORKOUT_PRESETS = 10
 
@@ -31,6 +33,34 @@ type WorkoutExerciseRow = {
   user_id: string
   exercise_id: string
   exercise_order: number
+  exercise_name: string | null
+  primary_muscles: string[] | null
+  secondary_muscles: string[] | null
+  description: string | null
+  equipment: string | null
+  movement_type: string | null
+}
+
+type PersonalExerciseRow = {
+  id: string
+  user_id: string
+  name: string
+  description: string
+  primary_muscles: string[]
+  secondary_muscles: string[]
+  equipment: string | null
+  movement_type: string | null
+  archived_at: string | null
+}
+
+export type PersonalExerciseInput = {
+  id?: string
+  name: string
+  description: string
+  primaryMuscleGroups: string[]
+  secondaryMuscles: string[]
+  equipment: string | null
+  movementType: string | null
 }
 
 type WorkoutSetRow = {
@@ -94,6 +124,106 @@ function mapPreset(row: PresetRow, exercises: PresetExerciseRow[]): WorkoutPrese
   }
 }
 
+function mapPersonalExercise(row: PersonalExerciseRow): PersonalExercise {
+  return {
+    id: row.id,
+    userId: row.user_id,
+    name: row.name,
+    description: row.description,
+    primaryMuscleGroups: row.primary_muscles,
+    muscleGroup: row.primary_muscles[0] ?? '',
+    secondaryMuscles: row.secondary_muscles,
+    secondaryMuscleGroup: row.secondary_muscles[0],
+    type: row.equipment ?? '',
+    movementType: row.movement_type ?? undefined,
+    archivedAt: row.archived_at,
+  }
+}
+
+export function validatePersonalExercise(input: PersonalExerciseInput) {
+  if (!input.name.trim() || input.name.trim().length > 80) return 'Vul een naam van maximaal 80 tekens in.'
+  if (input.description.length > 2000) return 'De beschrijving mag maximaal 2000 tekens bevatten.'
+  if (!input.primaryMuscleGroups.length) return 'Kies minimaal één primaire spiergroep.'
+
+  const validMuscleGroups = new Set(muscleGroupOptions)
+  const allSelectedMuscles = [...input.primaryMuscleGroups, ...input.secondaryMuscles]
+  if (allSelectedMuscles.some((muscle) => !validMuscleGroups.has(muscle))) return 'Kies spiergroepen uit de bestaande lijst.'
+  if (new Set(input.primaryMuscleGroups).size !== input.primaryMuscleGroups.length
+    || new Set(input.secondaryMuscles).size !== input.secondaryMuscles.length) {
+    return 'Een spiergroep kan niet dubbel worden gekozen.'
+  }
+  if (input.primaryMuscleGroups.some((muscle) => input.secondaryMuscles.includes(muscle))) {
+    return 'Een spiergroep kan niet tegelijk primair en secundair zijn.'
+  }
+  if (input.equipment && !equipmentOptions.includes(input.equipment)) return 'Kies materiaal uit de bestaande lijst.'
+  if (input.movementType && !movementTypeOptions.includes(input.movementType)) return 'Kies een bewegingstype uit de bestaande lijst.'
+  return null
+}
+
+const PERSONAL_EXERCISE_COLUMNS = 'id,user_id,name,description,primary_muscles,secondary_muscles,equipment,movement_type,archived_at'
+
+export async function loadPersonalExercises(includeArchived = false): Promise<PersonalExercise[]> {
+  const userId = await requireUserId()
+  let query = supabase
+    .from('personal_exercises')
+    .select(PERSONAL_EXERCISE_COLUMNS)
+    .eq('user_id', userId)
+  if (!includeArchived) query = query.is('archived_at', null)
+  const { data, error } = await query.order('name', { ascending: true })
+  throwIfError(error)
+  return ((data ?? []) as PersonalExerciseRow[]).map(mapPersonalExercise)
+}
+
+export async function loadExerciseById(exerciseId: string): Promise<Exercise | null> {
+  const standardExercise = exerciseCatalog.find((exercise) => exercise.id === exerciseId)
+  if (standardExercise) return standardExercise
+
+  const userId = await requireUserId()
+  const { data, error } = await supabase
+    .from('personal_exercises')
+    .select(PERSONAL_EXERCISE_COLUMNS)
+    .eq('id', exerciseId)
+    .eq('user_id', userId)
+    .maybeSingle()
+  throwIfError(error)
+  return data ? mapPersonalExercise(data as PersonalExerciseRow) : null
+}
+
+export async function savePersonalExercise(input: PersonalExerciseInput): Promise<PersonalExercise> {
+  const validationError = validatePersonalExercise(input)
+  if (validationError) throw new Error(validationError)
+  const userId = await requireUserId()
+  const payload = {
+    name: input.name.trim(),
+    description: input.description.trim(),
+    primary_muscles: input.primaryMuscleGroups,
+    secondary_muscles: input.secondaryMuscles,
+    equipment: input.equipment,
+    movement_type: input.movementType,
+  }
+  const query = input.id
+    ? supabase.from('personal_exercises').update(payload).eq('id', input.id).eq('user_id', userId)
+    : supabase.from('personal_exercises').insert({ ...payload, user_id: userId })
+  const { data, error } = await query.select(PERSONAL_EXERCISE_COLUMNS).maybeSingle()
+  throwIfError(error)
+  if (!data) throw new Error('De oefening bestaat niet meer of is niet beschikbaar.')
+  return mapPersonalExercise(data as PersonalExerciseRow)
+}
+
+export async function archivePersonalExercise(exerciseId: string) {
+  const userId = await requireUserId()
+  const { data, error } = await supabase
+    .from('personal_exercises')
+    .update({ archived_at: new Date().toISOString() })
+    .eq('id', exerciseId)
+    .eq('user_id', userId)
+    .is('archived_at', null)
+    .select('id')
+    .maybeSingle()
+  throwIfError(error)
+  if (!data) throw new Error('De oefening bestaat niet meer of is al gearchiveerd.')
+}
+
 function mapWorkoutRows(
   workoutRows: WorkoutRow[],
   exerciseRows: WorkoutExerciseRow[],
@@ -106,6 +236,19 @@ function mapWorkoutRows(
       .sort((a, b) => a.exercise_order - b.exercise_order)
       .map((exercise) => {
         const catalogExercise = catalogById.get(exercise.exercise_id)
+        // An older RPC wrote two empty arrays even when the old client sent no
+        // metadata at all. Treat only that recognizable standard-exercise shape
+        // as absent; named snapshots and intentional empty secondary lists stay.
+        const legacyMissingMuscles = Boolean(catalogExercise)
+          && exercise.exercise_name == null && exercise.description == null
+          && exercise.equipment == null && exercise.movement_type == null
+          && exercise.primary_muscles?.length === 0 && exercise.secondary_muscles?.length === 0
+        const primaryMuscles = exercise.primary_muscles != null && !legacyMissingMuscles
+          ? exercise.primary_muscles
+          : catalogExercise?.primaryMuscleGroups ?? (catalogExercise ? [catalogExercise.muscleGroup] : [])
+        const secondaryMuscles = exercise.secondary_muscles != null && !legacyMissingMuscles
+          ? exercise.secondary_muscles
+          : catalogExercise?.secondaryMuscles ?? []
         const sets: CompletedWorkoutSet[] = setRows
           .filter((set) => set.workout_exercise_id === exercise.id)
           .sort((a, b) => a.set_number - b.set_number)
@@ -118,10 +261,14 @@ function mapWorkoutRows(
         return {
           id: exercise.id,
           exerciseId: exercise.exercise_id,
-          name: catalogExercise?.name ?? `Onbekende oefening (${exercise.exercise_id})`,
-          muscleGroup: catalogExercise?.muscleGroup ?? '',
-          secondaryMuscleGroup: catalogExercise?.secondaryMuscleGroup,
-          type: catalogExercise?.type ?? '',
+          name: exercise.exercise_name ?? catalogExercise?.name ?? `Onbekende oefening (${exercise.exercise_id})`,
+          muscleGroup: primaryMuscles[0] ?? '',
+          primaryMuscles,
+          secondaryMuscleGroup: secondaryMuscles[0],
+          secondaryMuscles,
+          type: exercise.equipment ?? catalogExercise?.type ?? '',
+          movementType: exercise.movement_type ?? catalogExercise?.movementType,
+          description: exercise.description ?? catalogExercise?.description,
           order: exercise.exercise_order,
           sets,
         }
@@ -152,7 +299,7 @@ export async function loadCompletedWorkouts(): Promise<CompletedWorkout[]> {
   const workoutIds = workoutRows.map((workout) => workout.id)
   const { data: exercises, error: exerciseError } = await supabase
     .from('workout_exercises')
-    .select('id,workout_id,user_id,exercise_id,exercise_order')
+    .select('id,workout_id,user_id,exercise_id,exercise_order,exercise_name,primary_muscles,secondary_muscles,description,equipment,movement_type')
     .eq('user_id', userId)
     .in('workout_id', workoutIds)
   throwIfError(exerciseError)
@@ -295,6 +442,13 @@ export async function saveCompletedWorkout(workout: CompletedWorkout) {
     ...workout,
     exercises: workout.exercises.map((exercise, index) => ({
       exerciseId: exercise.exerciseId,
+      name: exercise.name,
+      muscleGroup: exercise.muscleGroup,
+      primaryMuscles: exercise.primaryMuscles ?? [exercise.muscleGroup],
+      secondaryMuscles: exercise.secondaryMuscles ?? (exercise.secondaryMuscleGroup ? [exercise.secondaryMuscleGroup] : []),
+      description: exercise.description ?? null,
+      type: exercise.type,
+      movementType: exercise.movementType ?? null,
       order: index + 1,
       sets: exercise.sets.map((set, setIndex) => ({
         setNumber: setIndex + 1,
@@ -327,15 +481,15 @@ export async function getExercisePerformance(exerciseId: string) {
   }
 }
 
-export async function createWorkoutExercisesFromPreset(preset: WorkoutPresetType) {
+export async function createWorkoutExercisesFromPreset(preset: WorkoutPresetType, personalExercises: PersonalExercise[] = []) {
   const workouts = await loadCompletedWorkouts()
-  const catalogById = new Map(exerciseCatalog.map((exercise) => [exercise.id, exercise]))
+  const exerciseById = new Map([...exerciseCatalog, ...personalExercises].map((exercise) => [exercise.id, exercise]))
   let missingExerciseCount = 0
   const exercises = preset.exercises
     .slice()
     .sort((a, b) => a.order - b.order)
     .flatMap((presetExercise) => {
-      const exercise = catalogById.get(String(presetExercise.exerciseId))
+      const exercise = exerciseById.get(String(presetExercise.exerciseId))
       if (!exercise) {
         missingExerciseCount += 1
         return []
@@ -358,8 +512,12 @@ export async function createWorkoutExercisesFromPreset(preset: WorkoutPresetType
         exerciseId: exercise.id,
         name: exercise.name,
         muscleGroup: exercise.muscleGroup,
+        primaryMuscles: exercise.primaryMuscleGroups ?? [exercise.muscleGroup],
         secondaryMuscleGroup: exercise.secondaryMuscleGroup,
+        secondaryMuscles: exercise.secondaryMuscles ?? (exercise.secondaryMuscleGroup ? [exercise.secondaryMuscleGroup] : []),
         type: exercise.type,
+        movementType: exercise.movementType,
+        description: exercise.description,
         previousPerformance: previousSet ? `Vorige keer: ${previousSet.weight} kg × ${previousSet.reps}` : undefined,
         personalRecord: personalRecord ? `PR: ${personalRecord.weight} kg × ${personalRecord.reps}` : undefined,
         sets: Array.from({ length: Math.min(10, Math.max(1, presetExercise.defaultSets)) }, () => ({
@@ -398,6 +556,11 @@ export async function loadPersonalRecords(): Promise<PersonalRecord[]> {
     }
   }
   return [...bestByExercise.values()].sort((a, b) => new Date(b.achievedAt).getTime() - new Date(a.achievedAt).getTime())
+}
+
+export async function loadTopExerciseSets(exerciseId: string, limit = 5) {
+  const workouts = await loadCompletedWorkouts()
+  return getTopExerciseSets(exerciseId, workouts, limit)
 }
 
 export async function getAnalytics() {

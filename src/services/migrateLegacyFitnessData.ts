@@ -63,8 +63,12 @@ function mapLegacyExercise(exercise: CompletedWorkoutExercise, order: number): C
     exerciseId: catalogExercise.id,
     name: catalogExercise.name,
     muscleGroup: catalogExercise.muscleGroup,
+    primaryMuscles: catalogExercise.primaryMuscleGroups ?? [catalogExercise.muscleGroup],
     secondaryMuscleGroup: catalogExercise.secondaryMuscleGroup,
+    secondaryMuscles: catalogExercise.secondaryMuscles ?? [],
     type: catalogExercise.type,
+    movementType: catalogExercise.movementType,
+    description: catalogExercise.description,
     order,
     sets: exercise.sets.map((set, index) => ({
       ...set,

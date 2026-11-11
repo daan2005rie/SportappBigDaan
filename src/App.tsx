@@ -9,6 +9,8 @@ import { WorkoutDetailsPage } from './pages/WorkoutDetailsPage'
 import { WorkoutHistoryPage } from './pages/WorkoutHistoryPage'
 import { WorkoutPage } from './pages/WorkoutPage'
 import { AuthPage } from './pages/AuthPage'
+import { ExercisesPage } from './pages/ExercisesPage'
+import { ExerciseDetailsPage } from './pages/ExerciseDetailsPage'
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
             <Route element={<AppShell />}>
               <Route index element={<HomePage />} />
               <Route path="workout" element={<WorkoutPage />} />
+              <Route path="exercises" element={<ExercisesPage />} />
+              <Route path="exercises/:id" element={<ExerciseDetailsPage />} />
               <Route path="workouts" element={<WorkoutHistoryPage />} />
               <Route path="workouts/:id" element={<WorkoutDetailsPage />} />
               <Route path="progress" element={<ProgressPage />} />

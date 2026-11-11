@@ -5,12 +5,13 @@ import { useNavigate } from 'react-router-dom'
 import { exerciseCatalog } from '../data/exercises'
 import { ExerciseSelector } from '../components/ExerciseSelector'
 import { WorkoutPresetEditor } from '../components/WorkoutPresetEditor'
-import type { Exercise, PresetExercise, WorkoutDraft, WorkoutExerciseItem, WorkoutPreset, WorkoutSetEntry } from '../types'
+import type { Exercise, PersonalExercise, PresetExercise, WorkoutDraft, WorkoutExerciseItem, WorkoutPreset, WorkoutSetEntry } from '../types'
 import {
   clearWorkoutDraft,
   createWorkoutExercisesFromPreset,
   deleteWorkoutPreset,
   loadWorkoutPresets,
+  loadPersonalExercises,
   saveWorkoutPreset,
   getExercisePerformance,
   loadWorkoutSessionDraft,
@@ -33,6 +34,7 @@ export function WorkoutPage() {
   const navigate = useNavigate()
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [presets, setPresets] = useState<WorkoutPreset[]>([])
+  const [personalExercises, setPersonalExercises] = useState<PersonalExercise[]>([])
   const [draft, setDraft] = useState<WorkoutDraft | null>(null)
   const [editingPreset, setEditingPreset] = useState<WorkoutPreset | null | undefined>(undefined)
   const [loadingData, setLoadingData] = useState(true)
@@ -47,11 +49,12 @@ export function WorkoutPage() {
 
   useEffect(() => {
     let active = true
-    void Promise.all([loadWorkoutPresets(), loadWorkoutSessionDraft()])
-      .then(([loadedPresets, loadedDraft]) => {
+    void Promise.all([loadWorkoutPresets(), loadWorkoutSessionDraft(), loadPersonalExercises(true)])
+      .then(([loadedPresets, loadedDraft, loadedPersonalExercises]) => {
         if (!active) return
         setPresets(loadedPresets)
         setDraft(loadedDraft)
+        setPersonalExercises(loadedPersonalExercises)
       })
       .catch(() => {
         if (active) setErrorMessage('Je workoutgegevens konden niet worden geladen. Controleer je verbinding en probeer opnieuw.')
@@ -80,7 +83,7 @@ export function WorkoutPage() {
   }, [draft, loadingData])
 
   const selectedExercises = draft?.exercises ?? []
-  const exerciseById = new Map(exerciseCatalog.map((exercise) => [exercise.id, exercise]))
+  const exerciseById = new Map([...exerciseCatalog, ...personalExercises].map((exercise) => [exercise.id, exercise]))
 
   const updateExercises = (update: (current: WorkoutExerciseItem[]) => WorkoutExerciseItem[]) => {
     setDraft((current) => current ? { ...current, exercises: update(current.exercises) } : current)
@@ -97,8 +100,12 @@ export function WorkoutPage() {
               exerciseId: exercise.id,
               name: exercise.name,
               muscleGroup: exercise.muscleGroup,
+              primaryMuscles: exercise.primaryMuscleGroups ?? [exercise.muscleGroup],
               secondaryMuscleGroup: exercise.secondaryMuscleGroup,
+              secondaryMuscles: exercise.secondaryMuscles ?? (exercise.secondaryMuscleGroup ? [exercise.secondaryMuscleGroup] : []),
               type: exercise.type,
+              movementType: exercise.movementType,
+              description: exercise.description,
               ...performance,
               sets: [createSet(isPresetWorkout ? '' : '60', isPresetWorkout ? '' : '8')],
             }])
@@ -169,7 +176,7 @@ export function WorkoutPage() {
     }
 
     try {
-    const result = await createWorkoutExercisesFromPreset(preset)
+    const result = await createWorkoutExercisesFromPreset(preset, personalExercises)
     if (!result.exercises.length) {
       setErrorMessage('Deze preset bevat geen beschikbare oefeningen. Bewerk de preset voordat je start.')
       return
@@ -436,6 +443,7 @@ export function WorkoutPage() {
             <ExerciseSelector
               selectedExerciseIds={selectedExercises.map((exercise) => exercise.exerciseId)}
               onAdd={addExercise}
+              personalExercises={personalExercises}
             />
 
             <section className="rounded-[28px] border border-slate-800 bg-slate-900/80 p-5 shadow-soft">
@@ -551,6 +559,7 @@ export function WorkoutPage() {
           preset={editingPreset ?? undefined}
           onClose={() => setEditingPreset(undefined)}
           onSave={handleSavePreset}
+          personalExercises={personalExercises}
         />
       ) : null}
 

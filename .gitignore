@@ -17,6 +17,15 @@ dist
 dist-ssr
 *.local
 
+# Local Supabase state and database backups (never commit credentials or user data)
+supabase/.temp/
+supabase/.branches/
+**/SportappBigDaan-Backup/
+**/roles.sql
+**/schema.sql
+**/data.sql
+**/migration_history.sql
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

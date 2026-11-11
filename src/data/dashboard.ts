@@ -1,5 +1,6 @@
 import {
   BarChart3,
+  BookOpen,
   Dumbbell,
   Flame,
   Home,
@@ -58,6 +59,7 @@ export const workspaceHistory: WorkoutSummary[] = [
 export const navigationItems: NavigationItem[] = [
   { key: 'home', label: 'Home', href: '/', icon: Home },
   { key: 'workout', label: 'Workout', href: '/workout', icon: Dumbbell },
+  { key: 'exercises', label: 'Oefeningen', href: '/exercises', icon: BookOpen },
   { key: 'workouts', label: 'Mijn workouts', href: '/workouts', icon: ListChecks },
   { key: 'progress', label: 'Progressie', href: '/progress', icon: BarChart3 },
 ]

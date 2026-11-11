@@ -10,7 +10,10 @@ export function AppShell() {
   const location = useLocation()
   const { currentUser, migrationError, signOut } = useAuth()
   const [authError, setAuthError] = useState<string | null>(null)
-  const currentPage = navigationItems.find((item) => item.href === location.pathname) ?? navigationItems[0]
+  const currentPage = navigationItems.find((item) => item.href === location.pathname)
+    ?? (location.pathname.startsWith('/exercises/') ? navigationItems.find((item) => item.key === 'exercises') : undefined)
+    ?? (location.pathname.startsWith('/workouts/') ? navigationItems.find((item) => item.key === 'workouts') : undefined)
+    ?? navigationItems[0]
 
   const handleSignOut = async () => {
     setAuthError(null)
@@ -38,6 +41,8 @@ export function AppShell() {
                 {navigationItems.map((item) => {
                   const Icon = item.icon
                   const isActive = location.pathname === item.href
+                    || (item.key === 'exercises' && location.pathname.startsWith('/exercises/'))
+                    || (item.key === 'workouts' && location.pathname.startsWith('/workouts/'))
 
                   return (
                     <NavLink

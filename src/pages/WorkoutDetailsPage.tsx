@@ -121,6 +121,14 @@ export function WorkoutDetailsPage() {
               <span className="rounded-full bg-slate-800 px-2.5 py-1 text-xs text-slate-300">{exercise.type}</span>
             </div>
 
+            {exercise.primaryMuscles?.length || exercise.secondaryMuscles?.length ? (
+              <div className="mt-3 flex flex-wrap gap-2 text-xs text-slate-400">
+                {exercise.primaryMuscles?.length ? <span>Primair: {exercise.primaryMuscles.join(', ')}</span> : null}
+                {exercise.secondaryMuscles?.length ? <span>Secundair: {exercise.secondaryMuscles.join(', ')}</span> : null}
+              </div>
+            ) : null}
+            {exercise.description ? <p className="mt-3 whitespace-pre-line text-sm leading-6 text-slate-400">{exercise.description}</p> : null}
+
             <div className="mt-4 space-y-2">
               {exercise.sets.map((set) => (
                 <div key={set.id} className="flex items-center justify-between rounded-2xl border border-slate-800 bg-slate-950/60 px-3 py-2 text-sm text-slate-200">

@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import type { WorkoutPreset } from '../types'
+import type { PersonalExercise, WorkoutPreset } from '../types'
 import {
   createWorkoutExercisesFromPreset,
   deleteWorkoutPreset,
@@ -130,6 +130,37 @@ describe('createWorkoutExercisesFromPreset', () => {
 
     expect(result.exercises).toEqual([])
     expect(result.missingExerciseCount).toBe(1)
+  })
+
+  it('resolves owned personal exercises, including archived exercises kept by existing presets', () => {
+    const personalExercise: PersonalExercise = {
+      id: '70000000-0000-4000-8000-000000000001',
+      userId: 'user-1',
+      name: 'Cable press variation',
+      description: 'Gecontroleerde uitvoering.',
+      muscleGroup: 'Borst',
+      primaryMuscleGroups: ['Borst'],
+      secondaryMuscles: ['Triceps'],
+      secondaryMuscleGroup: 'Triceps',
+      type: 'Kabel',
+      movementType: 'Compound',
+      archivedAt: '2026-10-10T10:00:00.000Z',
+    }
+
+    const result = createWorkoutExercisesFromPreset({
+      ...createStoredPreset(1),
+      exercises: [{ exerciseId: personalExercise.id, order: 1, defaultSets: 2 }],
+    }, [personalExercise])
+
+    expect(result.missingExerciseCount).toBe(0)
+    expect(result.exercises[0]).toMatchObject({
+      exerciseId: personalExercise.id,
+      name: personalExercise.name,
+      primaryMuscles: ['Borst'],
+      secondaryMuscles: ['Triceps'],
+      description: 'Gecontroleerde uitvoering.',
+    })
+    expect(result.exercises[0].sets).toHaveLength(2)
   })
 })
 
