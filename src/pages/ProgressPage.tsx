@@ -129,7 +129,7 @@ export function ProgressPage() {
         <div className="mt-6">
           {progressError ? <p role="alert" className="mb-3 text-sm text-rose-200">{progressError}</p> : null}
           {loadingProgress ? <p role="status" className="mb-3 text-sm text-slate-400">Progressie laden…</p> : null}
-          <ProgressChart data={chartData} />
+          <ProgressChart key={selectedExerciseId} data={chartData} />
         </div>
       </section>
     </div>

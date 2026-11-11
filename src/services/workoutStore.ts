@@ -550,15 +550,12 @@ export function getExerciseProgressForExercise(
       const timestamp = new Date(workout.completedAt).getTime()
       const bestWeight = exercise.sets.reduce((maxWeight, set) => Math.max(maxWeight, set.weight), 0)
 
-      if (bestWeight <= 0) {
+      if (!Number.isFinite(timestamp) || !Number.isFinite(bestWeight) || bestWeight < 0) {
         return null
       }
 
       return {
-        date: new Date(workout.completedAt).toLocaleDateString('nl-NL', {
-          day: 'numeric',
-          month: 'short',
-        }),
+        date: workout.completedAt,
         weight: bestWeight,
         timestamp,
       }

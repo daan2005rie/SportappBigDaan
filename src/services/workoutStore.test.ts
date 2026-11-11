@@ -132,9 +132,12 @@ describe('getExerciseProgressForExercise', () => {
     const result = getExerciseProgressForExercise('bench-press', workouts)
 
     expect(result).toEqual([
-      { date: '1 sep', weight: 70 },
-      { date: '15 sep', weight: 80 },
+      { date: '2026-09-01T09:00:00.000Z', weight: 70 },
+      { date: '2026-09-15T09:00:00.000Z', weight: 80 },
     ])
+    expect(getExerciseProgressForExercise('bench-press', workouts.toReversed())).toEqual(result)
+    const zeroWeightWorkout = { ...workouts[0], exercises: workouts[0].exercises.map((exercise) => ({ ...exercise, sets: exercise.sets.map((set) => ({ ...set, weight: 0 })) })) }
+    expect(getExerciseProgressForExercise('bench-press', [zeroWeightWorkout])).toEqual([{ date: '2026-09-01T09:00:00.000Z', weight: 0 }])
   })
 })
 

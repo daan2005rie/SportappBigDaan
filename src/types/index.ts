@@ -34,6 +34,7 @@ export interface WorkoutSummary {
 }
 
 export interface ExerciseProgressDatum {
+  /** Full workout timestamp; format only when displaying the chart. */
   date: string
   weight: number
 }
